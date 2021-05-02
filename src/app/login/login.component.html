@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,23 +8,74 @@
 
   <body>
    
-    <div class="login-page">
+    <div class="box">
+      <div class='wave -one'>
+        <div class='wave -two'></div>
+          <div class='wave -three'></div>
+        </div>
+        </div>
+    <div class="login-page "  >
+
+     
+      
+  
+      
         <img src="assets\logo.png" alt="logo" class="center" style="padding-left: 50px;">
+
       <div class="form">
         <div class="login">
           <div class="login-header">
-            <h3>LOGIN</h3>
-            <p>Please enter your credentials to login.</p>
+    
           </div>
         </div>
-        <form class="login-form">
-          <input type="text" placeholder="Username"/>
-          <input type="password" placeholder="Password"/>
-          <button>login</button>
-          <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
-        </form>
+<!-- 
+        <form class="form-signin">
+          <label for="inputEmail" class="sr-only">Email address</label>
+             <input name="email" [(ngModel)] = "user.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+             <label for="inputPassword" class="sr-only">Password</label>
+             <input name="password" [(ngModel)] = "user.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+             <div class="checkbox">
+              
+                <input type="checkbox" value="remember-me"> Remember me
+          
+             </div>
+       <button class="btn btn-lg btn-primary btn-block" (click)="validateLogin();" type="button">Sign in</button>
+     </form> -->
+     <mat-card style=" background: -webkit-linear-gradient(#25a7d7, #2962FF);">
+      <mat-card-content>
+    
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <p>Please login to continue</p>
+          <div class="form-group">
+              <label for="email" style="margin-right: 285px;font: style 200px;">Email</label>
+              <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="password" style="margin-right: 260px;font: style 200px;">Password</label>
+              <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+          </div>
+          <button [disabled]="loading" class="btn btn-primary">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+              Login
+          </button>
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+      </form>
+      </mat-card-content>
+    </mat-card>
+       
       </div>
+   
+   
     </div>
+ 
 </body>
 
 </html>
+
+<router-outlet></router-outlet>

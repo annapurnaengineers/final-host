@@ -1,0 +1,116 @@
+<div class="form-row parent">
+  <div class="col-md-4" fxFlex="40%">
+    <mat-form-field style="text-align:center;text-decoration: black;">
+      <input matInput type="text" style="color:purple;" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="col-md-4">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+        (ngModelChange)="modelChanged($event.target.value)" (dateInput)="inputEvent($event)"
+        (dateChange)="changeEvent($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker"  (ngModelChange)="modelChanged($event)"/>
+      <mat-datepicker-toggle matSuffix  [for]="picker" ></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker color="primary"></mat-datepicker>
+    </mat-form-field> -->
+  </div>
+
+
+  <div>
+    <button mat-button style="color:#ffffff;background-color:#003366; " (click)="refresh()">
+      <mat-icon>cached</mat-icon>
+    </button>
+    &nbsp;&nbsp;&nbsp;
+    <button mat-button style="color:#ffffff;background-color:#003366; " (click)="ExportTOExcel()">
+      <mat-icon style="margin-right: 10px;">get_app</mat-icon>Export
+    </button>
+  </div>
+
+
+</div>
+
+
+<div class=" test mat-elevation-z9">
+
+
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="patientdatasource" matSort matSortStart="desc">
+    <ng-container matColumnDef="sno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>S.No</mat-header-cell>
+      <mat-cell *matCellDef="let lesson;let i = index">{{ i + 1 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="invoiceid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice No</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.invoiceid}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="extracol">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.extracol}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="productname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Item</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.productname}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.category}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.quantity}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="clientname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.clientname}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.location}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="processdate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Process Start Date</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.processdate | date:'mediumDate'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createddate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Order Date</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.createddate | date:'mediumDate'}}</mat-cell>
+
+    </ng-container>
+    <ng-container matColumnDef="expecteddate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Date</mat-header-cell>
+      <mat-cell *matCellDef="let lesson" [ngClass]="'w-75'">{{lesson.expecteddate | date:'mediumDate'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let lesson">
+        <!-- <button mat-button >Edit</button> -->
+        <button mat-icon-button color="warn"  matTooltip="Send To Dispatch" matTooltipPosition="above" (click)="changeisactive(lesson._id,lesson)" [disabled]="lesson.isactive">
+          <mat-icon>swap_horiz</mat-icon>
+        </button>
+        <button mat-icon-button color="warn"  matTooltip="Delete Order" matTooltipPosition="above" (click)="deleteUser(lesson._id,lesson.productname)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </td>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  </mat-table>
+  <mat-paginator #scheduledOrdersPaginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
+  <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
+  </mat-paginator> -->
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#1863c5" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+</div>

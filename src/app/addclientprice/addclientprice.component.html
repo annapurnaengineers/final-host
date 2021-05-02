@@ -1,0 +1,36 @@
+
+<div id="modal-content-wrapper">
+   
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="productname">Product Name</label>
+                <input type="text" disabled class="form-control" id="productname" required [(ngModel)]="product.productname"
+                    name="productname">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="productcode">Product Code</label>
+                <input type="text" disabled class="form-control" id="productcode" required [(ngModel)]="product.productcode"
+                    name="productcode">
+            </div>
+        </div>
+        <div class="form ">
+            <div class="form-group col-md-6 ">
+                <label for="price">Client Price</label>
+                <!-- <input type="textarea" class="form-control" id="comments" required [(ngModel)]="product.comments" name="comments"> -->
+                <textarea id="comments" required [(ngModel)]="product.comments" name="comments" rows="10" cols="50">
+                    </textarea>
+                
+            </div>
+</div>
+
+
+    </form>
+    <footer id="modal-footer">
+        <button mat-raised-button id="modal-cancel-button" style='margin-right:16px'
+            (click)="closeModal()">Cancel</button>
+        <button mat-raised-button  id="modal-action-button" style='margin-right:16px'
+            (click)="actionFunction()" >Save</button>
+          
+    </footer>
+</div>

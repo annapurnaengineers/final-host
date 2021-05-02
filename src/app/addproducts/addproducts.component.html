@@ -1,6 +1,100 @@
-<footer id="modal-footer">
-    <button mat-raised-button id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button>
-    
-    <button mat-raised-button id="modal-action-button" style='margin-right:16px' (click)="actionFunction()">Save</button>
+<div id="modal-content-wrapper">
+    <form [formGroup]="addProduct" (ngSubmit)="submit()">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="productname">Product Name</label>
+            <input type="text" class="form-control" formControlName="productname" placeholder="Name">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="productcode">Code</label>
+            <input type="text" class="form-control" formControlName="productcode" placeholder="Code">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" formControlName="category" placeholder="category">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group col-md-6">
+          <label for="price">Price</label>
+          <input type="number" class="form-control" formControlName="price" placeholder="Price">
+         </div>
+        
+          <div class="form-group col-md-6">
+          <label for="totalavailable">Total Available</label>
+          <input type="text" disabled [(ngModel)]="totalCount" class="form-control" formControlName="totalavailable" placeholder="Total Available">
+        </div>
+        </div>
+
+        <div class="form-row">  
+          <div class="form-group col-md-4">
+            <label for="Workshop 1">Location</label>
+            <input type="checkbox" disabled class="custom-control-input" id="Workshop 1">
+            <select disabled id="Workshop 1"  class="form-control">
+              <option  selected>Workshop 1</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="workshop1">Quantity</label>
+            <input type="number" (input)="addvalue()" class="form-control" formControlName="workshop1">
+          </div>
+          <!-- <div class="form-group col-md-4">
+            <label for="inputZip">Comments</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div> -->
+        </div>
+
+
+        <div class="form-row">
+          
+          <div class="form-group col-md-4">
+            <label for="inputState">Location</label>
+            <input type="checkbox" multiple="multiple" class="custom-control-input" id="workshop2">
+            <select disabled id="inputState"  class="form-control">
+            
+              <option selected>Workshop 2</option>
+        
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="workshop2">Quantity</label>
+            <input type="number" (input)="addvalue()" class="form-control" formControlName="workshop2">
+          </div>
+          <!-- <div class="form-group col-md-4">
+            <label for="inputZip">Comments</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div> -->
+       
+      
+        </div>
+        <div class="form-row">
+          
+          <div class="form-group col-md-4">
+            <label for="inputState">Location</label>
+            <input type="checkbox" multiple="multiple" class="custom-control-input" id="workshop3">
+            <select disabled id="inputState"  class="form-control">
+            
+              <option selected>workshop 3</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="workshop3">Quantity</label>
+            <input type="number" (input)="addvalue()" class="form-control" formControlName="workshop3">
+          </div>
+          <!-- <div class="form-group col-md-4">
+            <label for="inputZip">Comments</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div> -->
+       
+      
+        </div>
+       
+      </form>
    
-</footer>
+    <footer id="modal-footer">
+      <button mat-raised-button   id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button>
+      <button mat-raised-button   id="modal-action-button" style='margin-right:16px' (click)="submit()">Save</button>
+      
+  </footer>
+</div>

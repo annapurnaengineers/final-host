@@ -1,93 +1,144 @@
 <div id="modal-content-wrapper">
-    <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Product Name</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Code</label>
-            <input type="text" class="form-control" id="inputPassword4" placeholder="Code">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-          <label for="inputAddress">Price</label>
-          <input type="number" class="form-control" id="inputAddress" placeholder="Price">
-         </div>
-        
-          <div class="form-group col-md-6">
-          <label for="inputAddress2">Total Available</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Quantity">
-        </div>
-        </div>
-        <div class="form-row">  
-          <div class="form-group col-md-4">
-            <label for="inputState">Location</label>
-            <input type="checkbox" disabled class="custom-control-input" id="inputState">
-            <select id="inputState"  class="form-control">
-              <option selected>Workshop 1</option>
-            </select>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputCity">Quantity</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputZip">Comments</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-        </div>
+  <form *ngIf="product">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="productname">Product Name</label>
+        <input type="text" class="form-control" id="productname"  required [(ngModel)]="product.productname" name="productname">
+      </div>
+     <div class="form-group">
+      <label for="productcode">Product Code</label>
+      <input type="text" class="form-control" id="productcode" 
+required [(ngModel)]="product.productcode" name="productcode">
+    </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="price">Price</label>
+        <input type="text" class="form-control" id="price" 
+required [(ngModel)]="product.price" name="price">
+      </div>
 
+      <div class="form-group col-md-4">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" id="category" 
+required [(ngModel)]="product.category" name="category">
+      </div>
+    
+    <div class="form-group col-md-4">
+      <label for="totalavailable">Total Available</label>
+      <input type="text" class="form-control" id="totalavailable" disabled
+      required [(ngModel)]="product.totalavailable" name="totalavailable">
+    </div>
+  </div>
+<div class="form-row">
+  <div class="form-group col-md-4">
+    <label for="workshop1">Workshop 1</label>
+    <input disabled type="checkbox"  class="custom-control-input" >
+    <select disabled id="workshop11" class="form-control">
+      <option  selected>Workshop 1</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="workshop1">Available</label>
+    <input type="text" class="form-control" (input)="addvalue()"  required [(ngModel)]="product.workshop1" id="workshop1" name="workshop1">
+  </div>
 
-        <div class="form-row">
-          
-          <div class="form-group col-md-4">
-            <label for="inputState">Location</label>
-            <input type="checkbox" multiple="multiple" class="custom-control-input" id="inputState">
-            <select id="inputState"  class="form-control">
-            
-              <option selected>Workshop 2</option>
-        
-            </select>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputCity">Quantity</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputZip">Comments</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-       
-      
-        </div>
-        <div class="form-row">
-          
-          <div class="form-group col-md-4">
-            <label for="inputState">Location</label>
-            <input type="checkbox" multiple="multiple" class="custom-control-input" id="inputState">
-            <select id="inputState"  class="form-control">
-            
-              <option selected>workshop 3</option>
-            </select>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputCity">Quantity</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputZip">Comments</label>
-            <input type="text" class="form-control" id="inputZip">
-          </div>
-       
-      
-        </div>
-       
-      </form>
-    <footer id="modal-footer">
-        <button mat-raised-button   id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button>
-        <button mat-raised-button   id="modal-action-button" style='margin-right:16px' (click)="actionFunction()">Save</button>
-        
-    </footer>
 </div>
+
+
+<div class="form-row">
+
+  <div class="form-group col-md-4">
+    <label for="workshop2">Workshop 2</label>
+    <input disabled type="checkbox" multiple="multiple" class="custom-control-input" >
+    <select disabled id="workshop22" class="form-control">
+
+      <option disabled selected>Workshop 2</option>
+
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="workshop2">Available</label>
+    <input type="text" class="form-control"  (input)="addvalue()" required  [(ngModel)]="product.workshop2" id="workshop2" name="workshop2">
+  </div>
+ 
+
+
+</div>
+<div class="form-row">
+
+  <div class="form-group col-md-4">
+    <label for="workshop3">Location</label>
+    <input disabled type="checkbox" multiple="multiple" class="custom-control-input" >
+    <select disabled id="workshop33" class="form-control">
+
+      <option disabled selected>workshop 3</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="inputCity">Available</label>
+    <input type="text" class="form-control" (input)="addvalue()" required [(ngModel)]="product.workshop3" id="workshop3" name="workshop3">
+  </div>
+ 
+
+
+</div>
+
+</form>
+<footer id="modal-footer">
+  <button mat-raised-button id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button>
+  <button mat-raised-button id="modal-action-button" style='margin-right:16px' (click)="actionFunction()">Save</button>
+
+</footer>
+</div>
+
+
+
+<!-- <form [formGroup]="updateSongForm" (ngSubmit)="actionFunction()">
+  <div class="form-group">
+      <label>Song name</label>
+      <input type="text" class="form-control" name="productname"   required="required" />
+      <p>{{productDetail.id}</p>
+  </div>
+  <div class="form-group">
+      <label>Artist name</label>
+      <input type="text" class="form-control" name="productcode" required="required" />
+  </div>
+  <div class="form-group">
+    <label>Artist </label>
+    <input type="text" class="form-control" name="price" required="required" />
+</div>
+  <button type="submit" class="btn btn-primary btn-block">Update Song</button>
+</form> -->
+
+
+
+
+
+
+
+
+<!-- <h3>Update User</h3>
+<div  style="width: 500px;">
+  <form (ngSubmit)="actionFunction()">
+    <div class="form-group">
+      <label for="productname">First Name</label>
+      <input type="text" class="form-control" id="productname" 
+required [(ngModel)]="product.productname" name="productname">
+    </div>
+
+    <div class="form-group">
+      <label for="productcode">Last Name</label>
+      <input type="text" class="form-control" id="productcode" 
+required [(ngModel)]="product.productcode" name="productcode">
+    </div>
+
+    <div class="form-group">
+      <label for="price">Email Id</label>
+      <input type="text" class="form-control" id="price" 
+required [(ngModel)]="product.price" name="price">
+    </div>
+
+    <button type="submit" (click)="closeModal()" class="btn btn-success">Submit</button>
+  </form>
+</div> -->

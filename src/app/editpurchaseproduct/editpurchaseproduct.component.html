@@ -1,0 +1,77 @@
+<div id="modal-content-wrapper">
+    <form *ngIf="allorders">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="purchaseorder">Purchase Order No</label>
+                <input type="text" class="form-control" disabled id="purchaseorder" required
+                    [(ngModel)]="allorders.purchaseorder" name="purchaseorder">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="category">Category</label>
+                <input type="text" class="form-control" disabled id="category" required [(ngModel)]="allorders.category"
+                    name="category">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="productname">Item</label>
+                <input type="text" class="form-control" disabled id="productname" required
+                    [(ngModel)]="allorders.productname" name="productname">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="productcode">Product Code</label>
+                <input type="text" class="form-control" disabled id="productcode" required
+                    [(ngModel)]="allorders.productcode" name="productcode">
+            </div>
+        </div>
+        <div class="form-row">
+
+
+            <div class="form-group col-md-6">
+                <label for="sellername">Seller Name</label>
+                <input type="text" class="form-control" disabled id="sellername" required
+                    [(ngModel)]="allorders.sellername" name="sellername">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="sellerprice">Seller Price</label>
+                <input type="text" class="form-control" id="sellerprice"  required
+                    [(ngModel)]="allorders.sellerprice" name="sellerprice">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="quantitypurchased">Quantity Purchased</label>
+                <input type="text" class="form-control" id="quantitypurchased"
+                    [(ngModel)]="allorders.quantitypurchased" name="quantitypurchased">
+
+            </div>
+            <div class="form-group col-md-6">
+                <label for="comments">Comments</label>
+                <textarea type="text" class="form-control"   [(ngModel)]="allorders.comments" id="comments"   name="comments"></textarea>
+            </div>
+
+        </div>
+
+<div  class="form-row">
+    <div class="form-group col-md-4">
+        <mat-form-field>
+            <label for="purchasedate">Purchased Date</label>
+            <input class="form-control"  (dateInput)="inputEvent($event)"
+                [(ngModel)]="allorders.purchasedate" matInput [matDatepicker]="myPicker" 
+                value="{{purchasedate | date :'yyyy-MM-dd'}}" name="purchasedate" required>
+            <mat-datepicker-toggle matSuffix [for]="myPicker"></mat-datepicker-toggle>
+            <mat-datepicker #myPicker></mat-datepicker>
+
+        </mat-form-field>
+
+    </div>
+</div>
+
+    </form>
+    <footer id="modal-footer">
+        <button mat-raised-button id="modal-cancel-button" style='margin-right:16px'
+            (click)="closeModal()">Cancel</button>
+        <button mat-raised-button id="modal-action-button" style='margin-right:16px'
+            (click)="actionFunction()">Save</button>
+
+    </footer>
+</div>

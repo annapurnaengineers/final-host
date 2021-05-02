@@ -1,0 +1,125 @@
+<div id="modal-content-wrapper">
+    <form *ngIf="usedproduct">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="category">Category</label>
+               
+                <input type="text" class="form-control" disabled id="category" required 
+                [(ngModel)]="usedproduct.category" name="category">
+       
+            </div>
+            <div class="form-group col-md-4">
+                <label for="productname">Product</label> 
+                <input type="text" class="form-control" disabled id="productname" required
+                [(ngModel)]="usedproduct.productname" name="productname">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="productcode">Product Code</label>
+                <input type="text" class="form-control" disabled id="productcode" required
+                    [(ngModel)]="usedproduct.productcode" name="productcode">
+            </div>
+        </div>
+        <div class="form-row">
+
+
+            <div class="form-group col-md-3">
+                <label for="Workshop 1">Location</label>
+                <input type="checkbox" disabled class="custom-control-input" id="Workshop 1">
+                <select disabled id="Workshop 1" class="form-control">
+                    <option selected>Workshop 1</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="enterworkshop1">Quantity Used</label>
+                <input type="text" class="form-control" id="enterworkshop1" (input)="addvalue()" required
+                    [(ngModel)]="usedproduct.enterworkshop1" name="enterworkshop1" >
+            </div>
+            <div class="form-group col-md-3">
+                <label for="balanceworkshop1">Total Available</label>
+                <input type="text" class="form-control" disabled id="balanceworkshop1" required
+                    [(ngModel)]="usedproduct.balanceworkshop1" name="balanceworkshop1">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="pushworkshop1">Remaining Available</label>
+                <input type="text" class="form-control"  id="pushworkshop1"  [disabled]='!isremactive' required
+                    [(ngModel)]="usedproduct.pushworkshop1" name="pushworkshop1">
+            </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-3">
+           
+                <label for="Workshop 2">Location</label>
+                <input type="checkbox" disabled class="custom-control-input" id="Workshop 2">
+                <select disabled id="Workshop 2" class="form-control">
+                    <option selected>Workshop 2</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="enterworkshop2">Quantity Used</label>
+                <input type="text" class="form-control" id="enterworkshop2" (input)="addvalue()" required
+                    [(ngModel)]="usedproduct.enterworkshop2" name="enterworkshop2" >
+            </div>
+            <div class="form-group col-md-3">
+                <label for="balanceworkshop2">Total Available</label>
+                <input type="text" class="form-control" disabled id="balanceworkshop2" required
+                    [(ngModel)]="usedproduct.balanceworkshop1" name="balanceworkshop1" >
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="pushworkshop2">Remaining Available</label>
+                <input type="text" class="form-control"  id="pushworkshop2"  [disabled]='!isremactive' required
+                    [(ngModel)]="usedproduct.pushworkshop2" name="pushworkshop2" >
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="Workshop 3">Location</label>
+                <input type="checkbox" disabled class="custom-control-input" id="Workshop 3">
+                <select disabled id="Workshop 3" class="form-control">
+                    <option selected>Workshop 3</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="enterworkshop3">Quantity Used</label>
+                <input type="text" class="form-control" id="enterworkshop3" (input)="addvalue()" required
+                    [(ngModel)]="usedproduct.enterworkshop3" name="enterworkshop3" >
+            </div>
+            <div class="form-group col-md-3">
+                <label for="balanceworkshop3">Total Available</label>
+                <input type="text" class="form-control" disabled id="balanceworkshop3" required
+                    [(ngModel)]="usedproduct.balanceworkshop3" name="balanceworkshop3">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="pushworkshop3">Remaining Available</label>
+                <input type="text" class="form-control"  id="pushworkshop3" [disabled]='!isremactive' required
+                    [(ngModel)]="usedproduct.pushworkshop3"  name="pushworkshop3" >
+            </div>
+        </div>
+
+
+
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="pushtotal">Total Remaining Available</label>
+        <input disabled type="text" disabled class="form-control" name="pushtotal"   [(ngModel)]="usedproduct.pushtotal" >
+    </div>
+</div>
+
+</form>
+<button mat-raised-button id="modal-edit-button" style="margin-right:16px;justify-self:left !important" (click)='isremactive=true'>Edit</button>
+<footer id="modal-footer">
+    
+    <button mat-raised-button id="modal-cancel-button" style='margin-right:16px;justify-self: right;align-self: center !important;' (click)="closeModal()">Cancel</button>
+    <button mat-raised-button id="modal-action-button" style='margin-right:16px;justify-self: right;align-self: center !important;' (click)="actionFunction()">Save</button>
+
+</footer>
+</div>

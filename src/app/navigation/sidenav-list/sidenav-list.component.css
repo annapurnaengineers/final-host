@@ -1,11 +1,44 @@
 a{
     text-decoration: none;
-    color: white;
+    color:black;
+    padding-top: 20px;
 }
 a:hover, a:active{
     color: lightgray;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+   
 }
 .nav-caption{
     display: inline-block;
     padding-left: 6px;
+}
+.fill-remaining-space {
+    flex: 1 1 auto;
+  }
+
+.mat-menu-item{
+ width: 200% !important;
+ color: black !important;
+/* display: 280px  !important; */
+
+}
+
+::ng-deep .mat-menu-content:not(:empty) {
+    display: inline-block !important;
+    width: 260px !important;
+  
+}
+
+button{
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    
+}
+
+.mat-drawer-container{
+    background-color: #fff;
 }

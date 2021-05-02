@@ -19,6 +19,29 @@
 }
 
 
+.parent {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: row;
+ margin-top: 20px;
+}
+mat-header-cell, mat-cell {
+  justify-content: center !important;
+}
 
+table {
+  text-align: center !important;
+  justify-content: center !important;
+  width: 100%;
+}
 
+.mat-sort-header-container {
+  justify-content: center !important;
+}
+
+.w-75{
+  max-width: 100px;
+  padding-left: 60px;
+}
 

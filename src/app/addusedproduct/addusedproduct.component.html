@@ -1,0 +1,115 @@
+<div id="modal-content-wrapper">
+    <form [formGroup]="addProduct" (ngSubmit)="submit()">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="category">Category</label>
+            <select formControlName="category" class="form-control" (change)="changedvalue1($event)" required >
+              <option value="" disabled selected>Select Category</option>
+              <!-- <option>Choose Category</option> -->
+              <option *ngFor="let cat of category2">{{cat}}</option>
+          </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="category">Item Name</label>
+            <select formControlName="productname" class="form-control" required (change)="changedvalue2($event)" >
+              <option value="" disabled selected>Select Product</option>
+              <!-- <option >Choose Product</option> -->
+              <option *ngFor="let product of productname1">{{product.productname}}</option>
+          </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="productcode">Code</label>
+            <input type="text" class="form-control" disabled formControlName="productcode" placeholder="Code">
+          </div>
+        </div>
+        
+     
+
+        <div class="form-row">  
+          <div class="form-group col-md-3">
+            <label for="Workshop 1">Location</label>
+            <input type="checkbox" disabled class="custom-control-input" id="Workshop 1">
+            <select disabled id="Workshop 1"  class="form-control">
+              <option  selected>Workshop 1</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="enterworkshop1">Quantity Used</label>
+            <input type="number" (input)="addvalue()"  class="form-control" formControlName="enterworkshop1">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="balanceworkshop1">Total Available</label>
+            <input type="number" disabled class="form-control" formControlName="balanceworkshop1">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="pushworkshop1">Remaining Available</label>
+            <input type="text" disabled class="form-control" formControlName="pushworkshop1">
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          
+          <div class="form-group col-md-3">
+            <label for="inputState">Location</label>
+            <input type="checkbox" multiple="multiple" class="custom-control-input" id="workshop2">
+            <select disabled id="inputState"  class="form-control">
+            
+              <option selected>Workshop 2</option>
+        
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="enterworkshop2">Quantity Used</label>
+            <input type="number" (input)="addvalue()"  class="form-control" formControlName="enterworkshop2">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="balanceworkshop2">Total Available</label>
+            <input type="number" disabled class="form-control" formControlName="balanceworkshop2">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="pushworkshop2">Remaining Available</label>
+            <input type="text" disabled class="form-control" formControlName="pushworkshop2">
+          </div>
+       
+      
+        </div>
+        <div class="form-row">
+          
+          <div class="form-group col-md-3">
+            <label for="inputState">Location</label>
+            <input type="checkbox" multiple="multiple" class="custom-control-input" id="workshop3">
+            <select disabled id="inputState"  class="form-control">
+            
+              <option selected>workshop 3</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="enterworkshop3">Quantity Used</label>
+            <input type="number" (input)="addvalue()"  class="form-control" formControlName="enterworkshop3">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="balanceworkshop3">Total Available</label>
+            <input type="text" disabled class="form-control" formControlName="balanceworkshop3">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="pushworkshop3">Remaining Available</label>
+            <input type="text" disabled class="form-control" formControlName="pushworkshop3">
+          </div>
+       
+      
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="pushtotal">Total Remaining Available</label>
+            <input type="text" disabled class="form-control" formControlName="pushtotal">
+          </div>
+        </div>
+      </form>
+   
+    <footer id="modal-footer">
+      <button mat-raised-button   id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button>
+      <button mat-raised-button   id="modal-action-button" style='margin-right:16px' (click)="submit()">Save</button>
+      
+  </footer>
+</div>

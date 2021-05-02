@@ -1,0 +1,96 @@
+<!-- <div>
+  <mat-form-field >
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+    <button mat-raised-button  style="color:black;display: block;margin-block-start: 20px;margin-left: 1200px;margin-bottom: 0%;"  (click)="openModal1()">Add Products</button>
+  </div> -->
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1863c5" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+  <div class="form-row parent">
+    <div class="col-md-6" fxFlex="40%">
+      <mat-form-field style="text-align:center;text-decoration: black;">
+        <input matInput type="text" style="color:purple;" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+   </div>
+  
+    <div >
+      <button mat-button   style="color:#ffffff;background-color:#003366;" (click)="openModal1()">Add  Purchase Products</button>
+      &nbsp;&nbsp;&nbsp; 
+      <button mat-button style="color:#ffffff;background-color:#003366; " (click)="ExportTOExcel()"><mat-icon style="margin-right: 10px;">get_app</mat-icon>Export</button>
+  </div>
+  
+  </div>
+
+
+
+
+
+
+
+
+    <div class=" test mat-elevation-z9">
+      
+     
+    <mat-table class="lessons-table mat-elevation-z8"  [dataSource]="patientdatasource" matSort  matSortStart="desc" >
+      <ng-container matColumnDef="sno">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>S.No</mat-header-cell>
+        <mat-cell *matCellDef="let lesson;let i = index" >{{ i + 1 }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="purchaseorder">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Purchase Order No.</mat-header-cell>
+        <mat-cell  *matCellDef="let lesson">{{lesson.purchaseorder}}</mat-cell>
+    </ng-container>
+      <ng-container matColumnDef="productname">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</mat-header-cell>
+          <mat-cell *matCellDef="let lesson">{{lesson.productname}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="productcode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header >Product Code</mat-header-cell>
+          <mat-cell  *matCellDef="let lesson">{{lesson.productcode}}</mat-cell>  
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Category</mat-header-cell>
+        <mat-cell  *matCellDef="let lesson">{{lesson.category}}</mat-cell>  
+    </ng-container>
+    <ng-container matColumnDef="sellername">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Dealer Name</mat-header-cell>
+      <mat-cell  *matCellDef="let lesson"  >{{lesson.sellername}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="sellerprice">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Purchased Price </mat-header-cell>
+    <mat-cell  *matCellDef="let lesson" >{{lesson.sellerprice}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="purchasedate">
+  <mat-header-cell *matHeaderCellDef mat-sort-header>Purchase Date </mat-header-cell>
+  <mat-cell  *matCellDef="let lesson"  style="text-indent: 35px;" >{{lesson.purchasedate  | date : 'longDate'}}</mat-cell>
+</ng-container>
+<ng-container matColumnDef="createddate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date </mat-header-cell>
+    <mat-cell  *matCellDef="let lesson"  style="text-indent: 35px;max-width: 150px;" >{{lesson.createddate  | date : 'longDate'}}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="lastupdated">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Last Updated </mat-header-cell>
+    <mat-cell  *matCellDef="let lesson"  style="text-indent: 35px;max-width: 150px;" >{{lesson.lastupdated  | date : 'longDate'}}</mat-cell>
+  </ng-container>
+<ng-container matColumnDef="actions">
+  <th mat-header-cell  *matHeaderCellDef > Actions </th>
+  <td mat-cell *matCellDef="let lesson"  >
+    <!-- <button mat-button >Edit</button> -->
+    <button mat-icon-button  matTooltip="Edit" matTooltipPosition="above" color="warn"  (click)="openModal(lesson)"><mat-icon>more_vert</mat-icon></button>
+    <button mat-icon-button  matTooltip="Delete Product" matTooltipPosition="above" color="warn" (click)="deleteUser(lesson._id,lesson.productname)"  ><mat-icon>delete</mat-icon></button>
+
+  </td>
+
+</ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns" ></mat-row>
+  
+  </mat-table>
+  <mat-paginator #scheduledOrdersPaginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
+  <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="setPageSizeOptions($event)">
+  </mat-paginator> -->
+
+
+</div>

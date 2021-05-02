@@ -1,0 +1,76 @@
+<!-- <h1 style="color: black;text-align: center;">Dashboard</h1> -->
+<div id="colorchange">
+
+
+  
+  <div id="wrapper" >
+   
+
+    <div id="first" class="lessons-table mat-elevation-z8" title="hello"
+      style=" border-radius: 6px;box-shadow: 0 5px 10px 0 rgba(70, 76, 79, .2);">
+      <mat-table class="lessons-table mat-elevation-z8" [dataSource]="patientdatasource" matSort matSortDirection="asc"
+        style="background-color: #a0c1b9;">
+        <ng-container matColumnDef="productname">
+          <mat-header-cell *matHeaderCellDef style="font-size: 15px;color: black;">Product</mat-header-cell>
+          <mat-cell *matCellDef="let lesson">{{ lesson.productname }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="totalavailable">
+          <mat-header-cell *matHeaderCellDef style="font-size: 15px;color: black;margin-left: 20px;">Low Quantity
+          </mat-header-cell>
+          <mat-cell *matCellDef="let lesson" style="text-indent: 30px;">{{lesson.totalavailable}}</mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns" style="justify-self: start;;"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </div>
+    <div id="second">
+      <div class="row">
+        <div class="column">
+          <div class="card" style="height: 178px;background-color: #90e0ef;">
+            <!-- <p><i class="fa fa-user"></i></p> -->
+            <h4 style="margin-bottom: 10px;font-weight: strong;font-size: 18px;color: darkslategrey;">Orders In
+              Production</h4>
+            <div *ngFor="let order of productname2 | keyvalue">
+              <h1
+                style="font-weight: strong;font-size: 55px;color: darkslategrey;text-align: center;padding-top: 30px;">
+                {{order.value | json}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card" style="height: 178px;background-color: #88d498;color: black;">
+            <!-- <p><i class="fa fa-check"></i></p> -->
+            <h4 style="margin-bottom: 10px;font-weight: strong;font-size: 18px;">Ready To Dispatch</h4>
+            <div *ngFor="let dispatch of dispatchcount | keyvalue">
+              <h1 style="font-weight: strong;font-size: 55px;color: black;text-align: center;padding-top: 30px;">
+                {{dispatch.value | json}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card" style="height: 178px;background-color: #DCE9FF;">
+            <h4 style="margin-bottom: 10px;font-weight: strong;font-size: 18px;color: black;">Expected Delivery Today
+            </h4>
+            <div *ngFor="let pro of productname1 | keyvalue">
+              <h1 style="font-weight: strong;font-size: 55px;color: black;text-align: center;padding-top: 30px;">
+                {{pro.value | json}}</h1>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div id="third">
+
+        <iframe
+          style="background: #FFFFFF;border: none;border-radius: 6px;box-shadow: 0 5px 10px 0 rgba(70, 76, 79, .2);"
+          width="1000" height="490"
+     src="https://charts.mongodb.com/charts-aep-vaybp/embed/charts?id=c99002d6-b417-4182-a3b4-54e6c125873d&autoRefresh=1800&theme=light"></iframe>
+      </div>
+  
+  </div>
+
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#1863c5" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+  

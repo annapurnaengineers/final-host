@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+   
+  }
+  
+
+  .column {
+    float: left;
+    width: 300px;
+    padding: 20px 0px;
+    margin-left: 50px;
+  }
+  
+  .row {margin: 0 -5px;}
+  
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+  
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    color: #444;
+    background-color: white;
+  }
+  
+  .fa {font-size:50px;}
+
+  iframe:focus {
+    outline: none;
+  }
+  
+  iframe[seamless] {
+    display: block;
+  }
+
+
+  /* #colorchange */
+  /* { */
+    /* background-color: #162B32; */
+    /* height: 725px; */
+    /* background-color: #abe9cd; */
+/* background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%); */
+
+  /* } */
+  ::ng-deep .mat-toolbar{
+    background-color: abe9cd !important; 
+  }
+
+  
+#wrapper {
+    width: 1400px;
+    height:600px;
+   
+}
+
+#first {
+    float:right;
+    width: 22%;
+    height: 115%;
+    /* background: red; */
+    margin-top: 20px;
+   
+}
+
+#second {
+    float:left;
+    width: 75%;
+    height: 40%;
+    /* background: green; */
+   
+}
+
+.mat-table{
+  border-radius: 6px;
+  box-shadow: 0 5px 10px 0 rgba(70, 76, 79, .2);
+  border-radius: 8px;
+  overflow:hidden !important;
+}
+
+#third {
+    float:left;
+    width: 75%;
+    height: 70%;
+    /* background: blue; */
+    margin-left: 43px;
+}
+
+
