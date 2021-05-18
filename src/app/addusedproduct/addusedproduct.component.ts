@@ -6,9 +6,8 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model'
-import { AuthenticationService } from '../services/authentication.service';
 import { ProductService } from '../services/product.service';
-import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
+
 
 
 
@@ -23,10 +22,7 @@ import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/templa
 export class AddusedproductComponent implements OnInit {
 
   addProduct: FormGroup;
-  addProduct1: FormGroup;
   ProductService: any;
- // myDate = new Date();
-  isLoggedIn$: Observable<boolean>;   
   totalCount: number;
   category: any;
   category2: any;
@@ -37,7 +33,7 @@ export class AddusedproductComponent implements OnInit {
 updatedvales:any;
 pushprovalue : any;
 
-    constructor(public dialogRef: MatDialogRef<AddusedproductComponent>,private datePipe: DatePipe, private productService : ProductService,private usedproductService: UsedproductService, private router: Router,private authService: AuthenticationService,
+    constructor(public dialogRef: MatDialogRef<AddusedproductComponent>,private datePipe: DatePipe, private productService : ProductService,private usedproductService: UsedproductService, private router: Router,
       public fb: FormBuilder, public datepipe: DatePipe) {
       this.form()
     }
@@ -63,7 +59,7 @@ pushprovalue : any;
       pushworkshop3: [''],
      // createddate: new Date().toISOString()
       createddate:  this.datepipe.transform(new Date(), 'yyyy-MM-dd'),
-      lastupdate :[''],
+      lastupdated :[''],
       pushtotal :['']
 
     })
@@ -117,18 +113,11 @@ console.log(this.category2);
    // this.emitValue.emit(this.selectedUser);
     //console.log(this.selectedUser)
     console.log(v);
-   
     this.changedvalue2(v);
-    
     this.productService.getProductbycategory(v.target.value).subscribe((result) => { 
-
       this.productname1 = result;
-    
       console.log(result);
-    }, error => console.log(error));
-  
-  
-   
+    }, error => console.log(error));  
    
   }
   

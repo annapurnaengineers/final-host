@@ -22,7 +22,7 @@ import { Allorders } from '../models/allorders.model';
   styleUrls: ['./allorders.component.css']
 })
 export class AllordersComponent implements OnInit {
-  displayedColumns: string[] = ['sno','invoiceid','extracol','productname','category','quantity','clientname','clientprice','advancereceived','location','createddate','expecteddate','actions'];
+  displayedColumns: string[] = ['sno','invoiceid','extracol','productname','category','quantity','clientname','finalbill','advancereceived','location','createddate','expecteddate','actions'];
 
 
   display = 'none';

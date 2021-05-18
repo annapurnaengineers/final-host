@@ -11,6 +11,12 @@
     <mat-icon>vertical_split</mat-icon> <span class="nav-caption">Products</span>
   </a>
   <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/clientlist"  *ngIf="isAdmin" (click)="onSidenavClose()">
+    <mat-icon>assessment</mat-icon> <span class="nav-caption">Only Admin</span>
+  </a>
+  <mat-divider></mat-divider>
+
+
   <a mat-list-item routerLink="/purchaseproduct" (click)="onSidenavClose()">
     <mat-icon>assignment_turned_in</mat-icon> <span class="nav-caption">Purchased Products</span>
   </a>
@@ -47,7 +53,9 @@
  
  
 </mat-nav-list>
-
+<div  style="margin-top: 250px;color: rgb(182, 182, 182);">
+  <h2>Your IP : {{ipAddress}}</h2>
+  </div>
 
 <!-- <mat-list-item [matMenuTriggerFor]="menu" style="color: black;">
   <mat-icon>power_settings_new</mat-icon> <span class="nav-caption">Logout</span>

@@ -24,6 +24,10 @@ import {NotfoundComponent} from './notfound/notfound.component';
 import {PurchaseproductComponent} from './purchaseproduct/purchaseproduct.component';
 import {AddpurchaseproductComponent} from './addpurchaseproduct/addpurchaseproduct.component';
 import {EditpurchaseproductComponent} from './editpurchaseproduct/editpurchaseproduct.component';
+import {ClientlistComponent} from './clientlist/clientlist.component';
+import {AddclientlistComponent} from './addclientlist/addclientlist.component';
+import {EditclientlistComponent} from './editclientlist/editclientlist.component';
+import {TestpageComponent} from './testpage/testpage.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule } from '@angular/material/dialog';
@@ -52,6 +56,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {SubjectService} from './services/subjectservice.service';
+
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Role } from './models/role.model';
@@ -90,7 +95,11 @@ import { Role } from './models/role.model';
    NotfoundComponent,
    PurchaseproductComponent,
    AddpurchaseproductComponent,
-   EditpurchaseproductComponent
+   EditpurchaseproductComponent,
+   ClientlistComponent,
+   AddclientlistComponent,
+   EditclientlistComponent,
+   TestpageComponent
 
   ],
   imports: [
@@ -144,7 +153,7 @@ import { Role } from './models/role.model';
            
              { path: 'login', component: LoginComponent },
              { path: '', redirectTo:'/login', pathMatch: 'full' ,},
-             { path: 'dashboard', component: HomeComponent,  canActivate: [AuthGuard] , data: { role: [Role.Admin] } },
+             { path: 'dashboard', component: HomeComponent,  canActivate: [AuthGuard] },
              { path: 'products', component: ProductsComponent,  canActivate: [AuthGuard]},
             //  { path: 'product/:_id', component: EditproductsComponent },
              { path: 'productsused', component: ProductsusedComponent,canActivate: [AuthGuard]},
@@ -160,6 +169,10 @@ import { Role } from './models/role.model';
              { path: 'purchaseproduct', component: PurchaseproductComponent ,canActivate: [AuthGuard]},
              { path: 'addpurchaseproduct', component: AddpurchaseproductComponent ,canActivate: [AuthGuard]},
              { path: 'editpurchaseproduct', component: EditpurchaseproductComponent , canActivate: [AuthGuard]},
+             { path: 'clientlist', component: ClientlistComponent ,canActivate: [AuthGuard], data: { role: [Role.Admin] } },
+             { path: 'addclientlist', component: AddclientlistComponent ,canActivate: [AuthGuard]},
+             { path: 'editclientlist', component: EditclientlistComponent , canActivate: [AuthGuard]},
+             { path: 'testpage', component: TestpageComponent , canActivate: [AuthGuard]},
              { path: 'notfound', component: NotfoundComponent },
              { path: '**', redirectTo: '/dashboard'  },
            

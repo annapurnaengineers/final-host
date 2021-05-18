@@ -28,7 +28,8 @@ export class EditallordersComponent implements OnInit {
    //route: any;
    updateSongForm: FormGroup;
    public productDetail: any;
-   tobepaid: number;
+ //  tobepaid: number;
+   finalbill: number;
   category2: Object;
   productname1: Product[];
   
@@ -47,21 +48,40 @@ export class EditallordersComponent implements OnInit {
         console.log(data,'here')
         this.allorders = data;
       }, error => console.log(error));
-      this.tobepaid = this.tobepaid;
+      //this.tobepaid = this.tobepaid;
   }
 
   addvalue()
   {
     //this.totalCount = 20;
     let product1 = this.allorders;
-    let ws1 = this.allorders.clientprice;
+    let ws1 = this.allorders.finalbill;
    // console.log(this.addProduct.get('workshop2').value);
     let ws2 =  this.allorders.advancereceived;
-    
+  
     this.allorders.tobepaid = parseInt(ws1)-parseInt(ws2);
-    //this.product.controls['totalavailable'].updateValue(this.totalCount);
+  
+   // this.allorders.controls['totalavailable'].updateValue(this.totalCount);
    
-    console.log(this.tobepaid);
+    console.log(this.allorders.tobepaid);
+  
+  }
+
+
+  addvalue1()
+  {
+    //this.totalCount = 20;
+    let product1 = this.allorders;
+    let ws3 = this.allorders.clientprice;
+   // console.log(this.addProduct.get('workshop2').value);
+    let ws4 =  this.allorders.quantity;
+    this.allorders.finalbill = parseInt(ws3)*parseInt(ws4);
+    let fb = this.allorders.finalbill;
+    let ws2 =  this.allorders.advancereceived;
+    this.allorders.tobepaid = parseInt(fb)-parseInt(ws2);
+
+    //this.product.controls['totalavailable'].updateValue(this.totalCount);
+    console.log(this.allorders.finalbill);
   
   }
 

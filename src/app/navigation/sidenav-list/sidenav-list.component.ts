@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { User  } from 'src/app/models/user.model';
 import { Role  } from 'src/app/models/role.model';
+import {HttpClient} from '@angular/common/http';
 
 
 @Component({
@@ -15,9 +16,11 @@ export class SidenavListComponent implements OnInit {
   user1: User;
  
   currentUser: User;
-            
+  ipAddress:any;
+  ip:string;
+  idd: any;
 
-  constructor(private authService: AuthenticationService,private router: Router) 
+  constructor(private authService: AuthenticationService,private router: Router,private http: HttpClient) 
   
   {
     this.authService.user.subscribe(x => {
@@ -31,16 +34,18 @@ export class SidenavListComponent implements OnInit {
 
   ngOnInit(){
   
-    
+    this.ipa();
   }
 
   get isAdmin() {
     let user1 = JSON.parse(localStorage.getItem('candidate')); 
-    return user1 && user1.role === Role.Admin;
+    // console.log(user1 && user1.userCredentials.role);
+    return user1 && user1.userCredentials.role === Role.Admin;
+   
 }
 
   onLogout(){
-   
+
     this.sidenavClose.emit();
     this.authService.logout(); 
     //this.router.navigate(['/login']);     
@@ -50,6 +55,15 @@ export class SidenavListComponent implements OnInit {
   
  
   
+  ipa()
+  {
+    this.http.get<{ip}>('https://jsonip.com')
+    .subscribe( data => {
+      console.log('th data', data);
+      this.ipAddress = data.ip;
+      console.log(this.ipAddress)
+    })
+  }
   
   
   @Output() sidenavClose = new EventEmitter();

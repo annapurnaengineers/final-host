@@ -5,12 +5,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Product } from '../models/product.model';
 import { Usedproduct } from '../models/usedproduct.model'
 import { FormGroup, FormBuilder } from "@angular/forms";
-import { ProductsusedComponent } from '../productsused/productsused.component';
 import { MAT_DIALOG_DATA, } from "@angular/material/dialog";
 import { UsedproductService } from '../services/usedproduct.service';
-import { Observable } from 'rxjs';
-import { AuthenticationService } from '../services/authentication.service';
-import { FormControl } from '@angular/forms';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -25,8 +21,6 @@ isremactive = false;
   //public id: string;
   usedproduct: Usedproduct;
   employee: Usedproduct = new Usedproduct();
-  //route: any;
-  updateSongForm: FormGroup;
   public productDetail: any;
   tobepaid: number;
   updatedvales: any;
@@ -37,7 +31,6 @@ isremactive = false;
   category: any;
   category2: any;
   productname1: any;
-  productcode2: Product[];
 
   constructor(public dialogRef: MatDialogRef<EditusedproductComponent>, private usedproductService: UsedproductService, private router: Router, private datePipe: DatePipe, private actRoute: ActivatedRoute, public fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,
     @Inject(MAT_DIALOG_DATA) private dialogData: any, private productService: ProductService) { }

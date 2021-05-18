@@ -73,7 +73,7 @@ export class AddproductsComponent implements OnInit {
           this.addProduct.reset();
           this.actionFunction();
        //  this.getaddproducts();
-         window.location.reload();
+       
         })
     
   }
@@ -90,6 +90,7 @@ export class AddproductsComponent implements OnInit {
 
   actionFunction() {
     // alert("Product Added Successfully");
+    window.location.reload();
     this.closeModal();
   }
 

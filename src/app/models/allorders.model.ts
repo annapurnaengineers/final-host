@@ -3,6 +3,7 @@ export class Allorders {
 		this._id='';
 		this.productname = '';
 		this.clientname = '';
+		this.finalbill ='';
         this.category = '';
 		this.invoiceid = '';
         this.clientprice = '';
@@ -20,6 +21,7 @@ export class Allorders {
 	public _id;
 	public productname;
 	public clientname;
+	public finalbill;
     public category;
 	public invoiceid;
     public clientprice;

@@ -48,7 +48,7 @@ export class AllordersService {
 
 
     updateUser1(_id: string, value: any): Observable<Object> {
-      console.log(value);
+      // console.log(value);
       return this.http.put(`${environment.apiUrl}allorders/setisactivebyid/${_id}` , value);
       
     }

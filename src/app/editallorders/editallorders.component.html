@@ -20,28 +20,41 @@
         <div class="form-row">
 
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="clientname">Client Name</label>
                 <input type="text" class="form-control" disabled id="clientname" required
                     [(ngModel)]="allorders.clientname" name="clientname">
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="clientprice">Client Price</label>
-                <input type="text" class="form-control" id="clientprice" (input)="addvalue()" required
+                <input type="text" class="form-control" id="clientprice" (input)="addvalue1()" disabled required
                     [(ngModel)]="allorders.clientprice" name="clientprice">
             </div>
+
+            <div class="form-group col-md-4">
+                <label for="quantity">Quantity</label>
+                <input type="text" class="form-control" (input)="addvalue1()" required [(ngModel)]="allorders.quantity" id="quantity"
+                    name="quantity">
+            </div>
+
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
+                <label for="finalbill">Final Bill</label>
+                <input type="text" class="form-control"  (input)="addvalue()" id="finalbill"
+                    [(ngModel)]="allorders.finalbill" name="finalbill">
+
+            </div>
+            <div class="form-group col-md-4">
                 <label for="advancereceived">Advance Received</label>
                 <input type="text" class="form-control" (input)="addvalue()" id="advancereceived"
                     [(ngModel)]="allorders.advancereceived" name="advancereceived">
 
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="tobepaid">Balance Amount</label>
-                <input type="text" class="form-control" disabled required [(ngModel)]="allorders.tobepaid" id="tobepaid"
+                <input type="text" class="form-control" disabled required  [(ngModel)]="allorders.tobepaid" id="tobepaid"
                     name="tobepaid">
             </div>
 
@@ -62,15 +75,22 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="quantity">Quantity</label>
-                <input type="text" class="form-control" required [(ngModel)]="allorders.quantity" id="quantity"
-                    name="quantity">
+                <mat-form-field>
+                    <label for="expecteddate">Expected Date</label>
+                    <input class="form-control"  (dateInput)="inputEvent($event)"
+                        [(ngModel)]="allorders.expecteddate" matInput [matDatepicker]="myPicker" [min]="minDate"
+                        value="{{expecteddate | date :'yyyy-MM-dd'}}" name="expecteddate" required>
+                    <mat-datepicker-toggle matSuffix [for]="myPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #myPicker></mat-datepicker>
+        
+                </mat-form-field>
+        
             </div>
             
 
 
         </div>
-<div  class="form-row">
+<!-- <div  class="form-row">
     <div class="form-group col-md-4">
         <mat-form-field>
             <label for="expecteddate">Expected Date</label>
@@ -83,7 +103,7 @@
         </mat-form-field>
 
     </div>
-</div>
+</div> -->
 
     </form>
     <footer id="modal-footer">

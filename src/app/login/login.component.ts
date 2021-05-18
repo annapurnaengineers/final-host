@@ -97,7 +97,7 @@ export class LoginComponent {
   //       }
   //     });
   // }
-  onSubmit() {
+ async  onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -106,7 +106,7 @@ export class LoginComponent {
     }
 
     this.loading = true;
-    this.authService.login(this.f.email.value, this.f.password.value)
+    (await this.authService.login(this.f.email.value, this.f.password.value))
         .pipe(first())
         .subscribe({
             next: () => {

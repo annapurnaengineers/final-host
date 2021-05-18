@@ -7,50 +7,73 @@
             <input type="text" class="form-control" formControlName="invoiceid" placeholder="Enter Invoice No." required >
           </div>
           <div class="form-group col-md-4">
-            <label for="category">Category</label>
-            <!-- <input type="text" class="form-control"  class="custom-control-input" placeholder="category"> -->
-            <!-- <input type="category"  class="custom-control-input" id="category"  placeholder="category">
-            <select id="category"  formControlName="category" (change)="changedvalue1($event)" class="form-control">
-                <option [ngValue]="null" selected disabled>Select Category</option>
-                <option *ngFor="let cat of category1"  [ngValue]="category" >
-                    {{cat.category}}
-             </option>
-            </select> -->
-           
-            <select formControlName="category" class="form-control" (change)="changedvalue1($event)" required >
-                <option value="" disabled selected>Select Category</option>
+            <label for="clientname">Client Name</label>
+            <select formControlName="clientname" class="form-control" (change)="changedvalue3($event)" required >
+                <option value="" disabled selected>Select Client</option>
                 <!-- <option>Choose Category</option> -->
-                <option *ngFor="let cat of category2">{{cat}}</option>
+                <option *ngFor="let cat of clientlist">{{cat._id.clientname}}</option>
             </select>
           </div>
+          <!-- <div class="form-group col-md-3">
+            <label for="clientcode">Client Code</label>
+            <input type="text" class="form-control" formControlName="clientcode"   placeholder="Enter Client Name" required >
+           </div> -->
+          <!-- <div class="form-group col-md-4">
+            <label for="category">Category</label>
+            <select formControlName="category" class="form-control"  required (change)="changedvalue1($event)">
+                <option value="" disabled selected>Select Category</option>
+              
+                <option *ngFor="let cat of category2">{{cat.category}}</option>
+            </select>
+          </div> -->
           <div class="form-group col-md-4">
             <label for="productname">Item</label>
-            <select formControlName="productname" class="form-control" required  >
+            <select formControlName="productname" class="form-control" required  (change)="changedvalue2($event)" >
                 <option value="" disabled selected>Select Product</option>
-                <!-- <option >Choose Product</option> -->
+                <option >Choose Product</option>
                 <option *ngFor="let product of productname1">{{product.productname}}</option>
             </select>
           </div>
+         
         </div>
         
         <div class="form-row">
-          <div class="form-group col-md-6">
-          <label for="clientname">Client Name</label>
-          <input type="text" class="form-control" formControlName="clientname" placeholder="Enter Client Name" required >
-         </div>
+          <!-- <div class="form-group col-md-4">
+            <label for="productname">Item</label>
+            <select formControlName="productname" class="form-control" required  (change)="changedvalue2($event)" >
+                <option value="" disabled selected>Select Product</option>
+               
+                <option *ngFor="let product of productname1">{{product.productname}}</option>
+            </select>
+          </div> -->
+          <div class="form-group col-md-4">
+            <label for="category">Category</label>
+            <input type="text"  class="form-control" disabled  formControlName="category" placeholder="Category Of Product" required >
+     
+          </div>
+          <div class="form-group col-md-4">
+            <label for="clientprice">Client Price</label>
+            <input type="number"  class="form-control" disabled  formControlName="clientprice" placeholder="Client Price For Product" required >
+     
+          </div>
+          <div class="form-group col-md-4">
+            <label for="quantity">Quantity</label>
+            <input type="number" class="form-control" (input)="qut()" formControlName="quantity" placeholder="Enter Quantity" required>
+          </div>
         
-          <div class="form-group col-md-6">
-          <label for="clientprice">Client Price</label>
-          <input type="number"  class="form-control" (input)="addvalue()" formControlName="clientprice" placeholder="Total Bill Price" required >
-        </div>
+       
        
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
+            <label for="finalbill">Total Bill</label>
+            <input type="number" class="form-control" disabled [(ngModel)]="totalCount1"  formControlName="finalbill" placeholder=" Final Bill" required>
+          </div>
+          <div class="form-group col-md-4">
             <label for="advancereceived">Advance Received</label>
             <input type="number"  class="form-control" (input)="addvalue()" formControlName="advancereceived" placeholder="Enter Advance Amount" required>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
             <label for="tobepaid">Balance Amount</label>
             <input type="number"  class="form-control" disabled [(ngModel)]="totalCount" formControlName="tobepaid" required >
           </div>
@@ -68,10 +91,7 @@
               <option  selected>Workshop 3</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
-            <label for="quantity">Quantity</label>
-            <input type="number" class="form-control" formControlName="quantity" placeholder="Enter Quantity" required>
-          </div>
+       
      <div class ="form-group col-md4">
         <mat-form-field>
             <label for="expecteddate">Expected Date</label>
