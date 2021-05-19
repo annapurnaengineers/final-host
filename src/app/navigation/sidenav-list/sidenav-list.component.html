@@ -44,6 +44,12 @@
  
   <mat-divider></mat-divider>
 
+  
+  <a mat-list-item routerLink="/(print:print/invoice)" (click)="onSidenavClose()">
+    <mat-icon>assessment</mat-icon> <span class="nav-caption">DC Print</span>
+  </a>
+  <mat-divider></mat-divider>
+
   <a mat-list-item routerLink=""  (click)="onLogout()">
     <mat-icon>power_settings_new</mat-icon> <span class="nav-caption">Logout</span>
   </a>

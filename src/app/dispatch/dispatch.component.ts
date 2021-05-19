@@ -14,6 +14,7 @@ import * as XLSX from 'xlsx';
 import { Onlyorders } from '../models/onlyorders.model';
 import { Allorders } from '../models/allorders.model';
 import{ Onlydispatch} from '../models/onlydisptach.model';
+import { PrintService } from '../print.service';
 
 @Component({
   selector: 'app-dispatch',
@@ -39,7 +40,7 @@ export class DispatchComponent implements OnInit {
   
   
   
-  constructor(public matDialog: MatDialog, private OnlycompletedService: OnlycompletedService, private allordersService: AllordersService,private OnlydispatchService: OnlydispatchService, private OnlyordersService: OnlyordersService, private router: Router,private datePipe: DatePipe,    private spinner: NgxSpinnerService) { }
+  constructor(public matDialog: MatDialog, private OnlycompletedService: OnlycompletedService, public printService: PrintService, private allordersService: AllordersService,private OnlydispatchService: OnlydispatchService, private OnlyordersService: OnlyordersService, private router: Router,private datePipe: DatePipe,    private spinner: NgxSpinnerService) { }
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
  
@@ -202,7 +203,6 @@ changeEvent(event){
   // Return date object
   console.log(event.value);
 }
-
 
 
 

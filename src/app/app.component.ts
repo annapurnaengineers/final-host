@@ -62,6 +62,9 @@ export class AppComponent {
   onSidenavClose = () => {
     this.sidenavClose.emit();
   }
+
+
+  
 }
 
 

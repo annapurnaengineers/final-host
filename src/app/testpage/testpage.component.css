@@ -1,0 +1,36 @@
+ @import url('https://fonts.googleapis.com/css2?family=KoHo&display=swap');
+
+
+    .b {
+      display: inline-block;
+      /* width: 100px; */
+      height: 100px;
+      padding: 5px;
+      font-family: 'KoHo', sans-serif;
+    }
+    
+
+     .page-header, .page-header-space 
+     
+     {
+      height: 90px;
+    }
+    
+    .page-footer, .page-footer-space {
+      height: 50px;
+    
+    }
+    
+    .page-footer {
+      position: fixed;
+      bottom: 0;
+      width: 1032px;
+      border-top: 1px solid black; 
+    }
+    
+    .page-header {
+      position: fixed;
+      top: 0mm;
+      width: 1032px;
+      border-bottom: 1px solid black; 
+    }

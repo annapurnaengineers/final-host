@@ -65,15 +65,29 @@ export class AllordersService {
         }
     getProductbydate(createddate :String) {
       return this.http.get<Allorders[]>(`${environment.apiUrl}allorders/getproductbydate/` + createddate )
-      
         .pipe(
           tap(_ => console.log(`Product id retrieved: ${createddate}`)),
-          catchError(this.handleError<Allorders[]>(`Get Song id=${createddate}`))
+          catchError(this.handleError<Allorders[]>(`Get Song id=${createddate}`))  
+        );  
+    }
+    getDcprint(clientname :String , invoiceid :String) {
+      return this.http.get<Allorders[]>(`${environment.apiUrl}allorders/getdcprint/` + clientname +'/' + invoiceid )
+        .pipe(
+          tap(_ => console.log(`Product id retrieved: ${clientname},${invoiceid}`)),
+          catchError(this.handleError<Allorders[]>(`Get Song id=${clientname}`))
+        );
+    }
+    
+    getInvoicebyclient(clientname :String) {
+      return this.http.get<Allorders[]>(`${environment.apiUrl}allorders/getinvoicebyclient/` + clientname )
+      
+        .pipe(
+          tap(_ => console.log(`Product id retrieved: ${clientname}`)),
+          catchError(this.handleError<Allorders[]>(`Get Song id=${clientname}`))
           
         );
        
     }
-  
        
 
 

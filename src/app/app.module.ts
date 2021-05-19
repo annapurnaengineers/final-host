@@ -28,6 +28,7 @@ import {ClientlistComponent} from './clientlist/clientlist.component';
 import {AddclientlistComponent} from './addclientlist/addclientlist.component';
 import {EditclientlistComponent} from './editclientlist/editclientlist.component';
 import {TestpageComponent} from './testpage/testpage.component';
+import {DcpageComponent} from './dcpage/dcpage.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule } from '@angular/material/dialog';
@@ -99,7 +100,8 @@ import { Role } from './models/role.model';
    ClientlistComponent,
    AddclientlistComponent,
    EditclientlistComponent,
-   TestpageComponent
+   TestpageComponent,
+   DcpageComponent
 
   ],
   imports: [
@@ -169,11 +171,14 @@ import { Role } from './models/role.model';
              { path: 'purchaseproduct', component: PurchaseproductComponent ,canActivate: [AuthGuard]},
              { path: 'addpurchaseproduct', component: AddpurchaseproductComponent ,canActivate: [AuthGuard]},
              { path: 'editpurchaseproduct', component: EditpurchaseproductComponent , canActivate: [AuthGuard]},
-             { path: 'clientlist', component: ClientlistComponent ,canActivate: [AuthGuard], data: { role: [Role.Admin] } },
+             { path: 'clientlist', component: ClientlistComponent ,canActivate: [AuthGuard], data: { role: [Role.Admin]} },
              { path: 'addclientlist', component: AddclientlistComponent ,canActivate: [AuthGuard]},
-             { path: 'editclientlist', component: EditclientlistComponent , canActivate: [AuthGuard]},
-             { path: 'testpage', component: TestpageComponent , canActivate: [AuthGuard]},
+             { path: 'editclientlist', component: EditclientlistComponent , canActivate: [AuthGuard]}, 
+             { path: 'print', outlet: 'print', component: TestpageComponent , children: [{ path: 'invoice', component: DcpageComponent } ]},
+            //  { path: 'invoice/:invoiceIds', component: DcpageComponent },
+           //  { path: 'testpage', component: TestpageComponent , canActivate: [AuthGuard]},
              { path: 'notfound', component: NotfoundComponent },
+          
              { path: '**', redirectTo: '/dashboard'  },
            
               

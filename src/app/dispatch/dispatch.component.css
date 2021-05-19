@@ -79,4 +79,7 @@
   mat-cell, mat-header-cell, mat-footer-cell {
   text-align: center !important;
   }
-    
+  @media print {
+    .isPrinting > * { display: none; }
+    .isPrinting app-print-layout { display: block; }
+  }
