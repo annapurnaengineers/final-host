@@ -1,0 +1,109 @@
+.invoice { page-break-after: always; }
+.invoice:last-child { page-break-after: avoid; }
+
+
+/* @media print {
+  #printbtn {
+      display :  none;
+  }
+}
+
+.button {
+  background-color: #5476e9; 
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 90px;
+} */
+
+@media print {
+  button {
+    display: none;
+    
+  }
+}
+
+mat-table{
+  transition: none !important;
+  box-shadow: none !important;
+}
+
+
+
+
+.actions {
+  padding-top:1em;
+}
+input:focus {
+  outline: 0;
+}
+
+.heading {
+  background-color:#357EBD;
+  color:#FFF;
+  margin-bottom:1em;
+  margin-top: 100px;
+  text-align:center;
+  line-height:2.5em;
+  width: 1000px;
+}
+.branding {
+  padding-bottom:2em;
+  border-bottom:1px solid #ddd;
+}
+.logo-container {
+  text-align:right;
+}
+.infos .right {
+  text-align:right;
+}
+.infos .right input {
+  text-align:right;
+}
+.infos .input-container {
+  padding:3px 0;
+}
+
+.header.row {
+  font-weight:bold;
+  border-bottom:1px solid #ddd;
+  border-top:1px solid #ddd;
+}
+
+input, textarea{
+  border: 1px solid #FFF;
+}
+
+
+
+
+
+
+body{
+  padding:20px;
+}
+
+.infos input{
+  width: 300px;
+}
+
+.align-right input{
+  text-align:right;
+  width: 300px;
+}
+
+div.container{
+  width: 1000px;
+}
+
+#imgInp{
+  display: none;
+}
+

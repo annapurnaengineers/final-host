@@ -1,0 +1,66 @@
+
+<div id="modal-content-wrapper">
+    <form *ngIf="usedproduct">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="category">DC No</label>
+
+                <input type="text" class="form-control" disabled id="dcid" required
+                    [(ngModel)]="usedproduct.dcid" name="dcid">
+
+            </div>
+            <div class="form-group col-md-6">
+                <label for="clientname">Client Name</label>
+                <input type="text" class="form-control" disabled id="clientname" required
+                    [(ngModel)]="usedproduct.clientname" name="clientname">
+            </div>
+            <!-- <div class="form-group col-md-4">
+                <label for="productcode">Product Code</label>
+                <input type="text" class="form-control" disabled id="productcode" required
+                    [(ngModel)]="usedproduct.productcode" name="productcode">
+            </div> -->
+        </div>
+        <div class="form-row">
+
+
+            <div class="form-group col-md-6">
+                <label for="invoiceid">Invoice No</label>
+                <input type="text" class="form-control" disabled id="invoiceid" required
+                    [(ngModel)]="usedproduct.invoiceid" name="invoiceid">
+            </div>
+
+           
+            <div class="form-group col-md-6">
+                <label for="advancegot">Amount Received Till Date</label>
+                <input type="text" class="form-control" id="advancegot"  (input)="addvalue()" [(ngModel)]="usedproduct.advancegot"
+                    name="advancegot">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="finalinvoicebill"> Total Bill On Invoice</label>
+                <input type="text" class="form-control" disabled id="finalinvoicebill" [(ngModel)]="usedproduct.finalinvoicebill"
+                    name="finalinvoicebill">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="balanceamount"> Balance Amount</label>
+                <input type="text" class="form-control"disabled  id="balanceamount" (input)="addvalue()" [(ngModel)]="usedproduct.balanceamount"
+                    name="balanceamount">
+            </div>
+           
+          
+        </div>
+
+
+
+
+
+    </form>
+    <footer id="modal-footer">
+        <button mat-raised-button id="modal-cancel-button" style='margin-right:16px'
+            (click)="closeModal()">Cancel</button>
+        <button mat-raised-button id="modal-action-button" style='margin-right:16px'
+            (click)="actionFunction()">Save</button>
+
+    </footer>
+</div>

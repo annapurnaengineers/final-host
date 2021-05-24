@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Invoice For Annapurna Engineers</title>
+  <meta charset='utf-8'>
+  <meta name="description" content="AngularJS and Angular Code Example for creating Invoices and Invoicing Application">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+
+
+</head>
+
+<body ng-app="invoicing" ng-controller="InvoiceCtrl">
+  <div class="container" width="800px" id="invoice">
+    <div class="row">
+      <div class="col-xs-12 heading">
+       STATEMENT  INVOICE
+      </div>
+    </div>
+    <div class="row branding">
+      <div class="col-xs-6">
+        <div class="invoice-number-container">
+          <!-- <label for="invoice-number">Invoice No #</label><input type="text" id="invoice-number"
+            ng-model="invoice.invoice_number" />
+          <br>
+          <label for="invoice-number">DC No #</label><input type="text" id="invoice-number"
+          ng-model="invoice.invoice_number" />
+        <br> -->
+          <label for="invoice-date">  Date :</label><input type="text" id="invoice-date"
+            ng-model="invoice.date" />
+        </div>
+      </div>
+      <div class="col-xs-6 logo-container">
+        <input type="file" id="imgInp" />
+        <!-- <img ng-hide="logoRemoved" id="company_logo" ng-src="{{ logo }}" alt="your image" width="200" /> -->
+        <div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row infos">
+      <div class="col-xs-6">
+        <div class="input-container"><input type="text" placeholder="Client Name" /></div>
+        <div class="input-container"><input type="text" placeholder="Address" /></div>
+        <!-- <div class="input-container"><input type="text" placeholder="Address2" /></div> -->
+        <div class="input-container"><input type="text" placeholder="State" /></div>
+        <div class="input-container"><input type="text" placeholder="Phone Number" /></div>
+        <div class="input-container" data-ng-hide='printMode'>
+          <!-- <select ng-model='currencySymbol' ng-options='currency.symbol as currency.name for currency in availableCurrencies'></select> -->
+        </div>
+      </div>
+      <!-- <div class="col-xs-6 right">
+        <div class="input-container"><input type="text" ng-model="invoice.company_info.name"/></div>
+        <div class="input-container"><input type="text" ng-model="invoice.company_info.address1"/></div>
+        <div class="input-container"><input type="text" ng-model="invoice.company_info.address2"/></div>
+        <div class="input-container"><input type="text" ng-model="invoice.company_info.postal"/></div>
+        <div class="input-container"><input type="text" ng-model="invoice.company_info.phone"/></div>
+      </div> -->
+    </div>
+    <hr>
+    <form  [formGroup]="Test">
+      <div class="form-row" *ngIf="isShown">
+
+        <div class="form-group col-md-4">
+          <label for="clientname">Client Name</label>
+          <select formControlName="clientname" class="form-control" (change)="changedvalue1($event)" required>
+            <option value="" disabled selected>Select Client</option>
+            <option >Choose Client</option>
+            <option *ngFor="let cat of clientlist ">{{cat._id.clientname}}</option>
+          </select>
+        </div>
+        <!-- <div class="form-group col-md-4">
+          <label for="invoiceid">Select Invoice</label>
+          <select formControlName="invoiceid" class="form-control"  (change)="changedvalue2($event)" required>
+            <option value="" disabled selected>Select Inoviceid</option>
+            <option >Choose Invoice Id</option>
+            <option *ngFor="let cat of invoiceid">{{cat}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="invoiceid">DC No:</label>
+            {{dcid}}
+            </div> -->
+      </div>
+    </form>
+   
+    <button type="button"   class="btn btn-primary"  (click)="toggleShow() ">Click This Button Before Print</button>
+    <button class="button" class="btn btn-primary" style="margin-left: 10px;" (click)="printPage()">Print</button>
+
+</div>
+<!-- <h3 style="margin-left: 30px;">Total Due Balance Till Date : {{fullbalance}} <i>Excluding Gst</i></h3> -->
+
+
+  <h3 style="margin-left: 30px;"> Total Amount Received : Rs {{clientadvacnepaid}}</h3>
+  <h3 style="margin-left: 30px;">Total Balance  : Rs{{currentbalance}} </h3>
+  <h3 style="margin-left: 30px;"> Total Transaction : Rs {{clienttotalbill}}</h3>
+
+
+
+
+<div class=" test mat-elevation-z9">
+
+
+  <mat-table class="lessons-table mat-elevation-z8" [dataSource]="patientdatasource" matSort matSortStart="desc">
+   
+    <ng-container matColumnDef="sno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>S.No</mat-header-cell>
+      <mat-cell *matCellDef="let lesson;let i = index">{{ i + 1 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="dcid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Dc No</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.dcid}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="invoiceid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice No</mat-header-cell>
+      <mat-cell *matCellDef="let lesson">{{lesson.invoiceid}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="clientname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</mat-header-cell>
+      <mat-cell *matCellDef="let lesson" style="text-indent: 10px;">{{lesson.clientname}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="balanceamount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>To Be Paid</mat-header-cell>
+      <mat-cell *matCellDef="let lesson" style="text-indent: 20px;">{{lesson.balanceamount}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef="let lesson">  {{clientbalancetobepaid}} </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="advancegot">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Amount Received</mat-header-cell>
+      <mat-cell *matCellDef="let lesson" style="text-indent: 30px;">{{lesson.advancegot}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="finalinvoicebill">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="text-indent: 20px;">Total Bill</mat-header-cell>
+      <mat-cell *matCellDef="let lesson" style="text-indent: 45px;">{{lesson.finalinvoicebill}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="totalproductstaken">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Products Count</mat-header-cell>
+      <mat-cell *matCellDef="let lesson" style="text-indent: 45px;">{{lesson.totalproductstaken}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createddate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</mat-header-cell>
+      <mat-cell *matCellDef="let lesson" style="text-indent: 30px;">{{lesson.createddate | date : 'longDate'}}
+      </mat-cell>
+    </ng-container>
+ 
+ 
+  
+    
+
+ 
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <!-- <mat-footer-row *matFooterRowDef=" let row; columns:displayedColumns; sticky: true"></mat-footer-row> -->
+    
+
+  </mat-table>
+ <br>
+<hr>
+<h3 style="text-align: center;">Products By Invoice</h3>
+<hr>
+
+</div>
+    <div class="  mat-elevation-z8">
+      <mat-table class="lessons-table mat-elevation-z8" [dataSource]="patientdatasource1" matSort  matSortDirection="asc">
+        <ng-container matColumnDef="sno">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>S.No</mat-header-cell>
+          <mat-cell *matCellDef="let lesson;let i = index">{{ i + 1 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="invoiceid">
+          <mat-header-cell *matHeaderCellDef mat-sort-header style="align-items: center;" >Invoice No</mat-header-cell>
+          <mat-cell  *matCellDef="let lesson" style="text-align: center;">{{lesson.invoiceid}}</mat-cell>  
+      </ng-container>
+        <ng-container matColumnDef="productname">
+          <mat-header-cell *matHeaderCellDef mat-sort-header style="align-items: center;" >Item</mat-header-cell>
+          <mat-cell  *matCellDef="let lesson" style="text-align: center;">{{lesson.productname}}</mat-cell>  
+      </ng-container>
+      <ng-container matColumnDef="clientprice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header >Price Per Item</mat-header-cell>
+        <mat-cell  *matCellDef="let lesson">{{lesson.clientprice}}</mat-cell>  
+    </ng-container>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header  > Quantity</mat-header-cell>
+        <mat-cell  *matCellDef="let lesson" >{{lesson.quantity}}</mat-cell>
+      </ng-container>
+     
+    <ng-container matColumnDef="finalbill">
+      <mat-header-cell *matHeaderCellDef mat-sort-header  > Total</mat-header-cell>
+      <mat-cell  *matCellDef="let lesson" >{{lesson.finalbill}}</mat-cell>
+    </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns1" style="justify-self: start;;"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns1" ></mat-row>
+      </mat-table>
+
+
+
+ 
+
+</div>
+
+</body>
+
+</html>

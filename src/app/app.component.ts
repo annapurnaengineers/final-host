@@ -13,7 +13,7 @@ import { User } from './models/user.model';
 })
 export class AppComponent {
   user: User;
-  title = 'aep';
+  title = 'Annapurna Engineers';
 
   user1: any;
 

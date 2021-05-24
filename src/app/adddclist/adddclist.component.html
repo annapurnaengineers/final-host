@@ -1,0 +1,67 @@
+
+<div id="modal-content-wrapper">
+    <form [formGroup]="addAllorders" name="add" (ngSubmit)="submit()">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="invoiceid">Dc No</label>
+            <input type="text" class="form-control" formControlName="dcid" placeholder="Enter DC No." required >
+          </div>
+          <div class="form-group col-md-4">
+            <label for="clientname">Client Name</label>
+            <select formControlName="clientname" class="form-control" (change)="changedvalue1($event)" required >
+                <option value="" disabled selected>Select Client</option>
+                <!-- <option>Choose Category</option> -->
+                <option *ngFor="let cat of clientlist">{{cat._id.clientname}}</option>
+            </select>
+          </div>
+       
+          <div class="form-group col-md-4">
+            <label for="invoiceid">Invoice No</label>
+            <select formControlName="invoiceid" class="form-control" required  (change)="changedvalue2($event)" >
+                <option value="" disabled selected>Select Invoice</option>
+                <option >Choose Invoice</option>
+                <option *ngFor="let cat of invoiceid">{{cat}}</option>
+            </select>
+          </div>
+         
+        </div>
+        
+        <div class="form-row">
+          
+          <div class="form-group col-md-6">
+            <label for="balanceamount">To Be Paid</label>
+            <input type="number"  class="form-control" disabled  formControlName="balanceamount" placeholder="Balance Amount For Invoice" required >
+     
+          </div>
+          <div class="form-group col-md-6">
+            <label for="advancegot">Advance Received</label>
+            <input type="number" class="form-control"  formControlName="advancegot" placeholder="Advance Received" required>
+          </div>
+      
+       
+       
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="finalinvoicebill">Total Bill For Invoice</label>
+            <input type="number" class="form-control" disabled [(ngModel)]="totalCount1"  formControlName="finalinvoicebill" placeholder=" Final Bill" required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="totalproductstaken">Products Count</label>
+            <input type="number"  class="form-control" disabled formControlName="totalproductstaken" placeholder="Different Products " required>
+          </div>
+       
+        </div>
+
+    
+
+
+       
+      </form>
+   
+    <footer id="modal-footer">
+      <button mat-raised-button   id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button>
+      <button mat-raised-button [disabled]="addAllorders.controls['invoiceid' || 'dcid' || 'clientname' ||'totalproductstaken' || 'balanceamount' || 'advancegot'].invalid"  id="modal-action-button" style='margin-right:16px' (click)="submit()">Save</button>
+      
+  </footer>
+</div>

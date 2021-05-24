@@ -29,6 +29,12 @@ import {AddclientlistComponent} from './addclientlist/addclientlist.component';
 import {EditclientlistComponent} from './editclientlist/editclientlist.component';
 import {TestpageComponent} from './testpage/testpage.component';
 import {DcpageComponent} from './dcpage/dcpage.component';
+import {DclistComponent} from './dclist/dclist.component';
+import {AdddclistComponent} from './adddclist/adddclist.component';
+import {EditdclistComponent} from './editdclist/editdclist.component';
+import {DcinvoicepageComponent} from './dcinvoicepage/dcinvoicepage.component';
+import{AddscrapComponent} from './addscrap/addscrap.component';
+import {Testpage1Component} from './testpage1/testpage1.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule } from '@angular/material/dialog';
@@ -101,7 +107,14 @@ import { Role } from './models/role.model';
    AddclientlistComponent,
    EditclientlistComponent,
    TestpageComponent,
-   DcpageComponent
+   DcpageComponent,
+   DclistComponent,
+   AdddclistComponent,
+   EditdclistComponent,
+   DcinvoicepageComponent,
+   AddscrapComponent,
+   Testpage1Component
+
 
   ],
   imports: [
@@ -174,6 +187,11 @@ import { Role } from './models/role.model';
              { path: 'clientlist', component: ClientlistComponent ,canActivate: [AuthGuard], data: { role: [Role.Admin]} },
              { path: 'addclientlist', component: AddclientlistComponent ,canActivate: [AuthGuard]},
              { path: 'editclientlist', component: EditclientlistComponent , canActivate: [AuthGuard]}, 
+             { path: 'dclist', component: DclistComponent ,canActivate: [AuthGuard] },
+             { path: 'adddclist', component: AdddclistComponent ,canActivate: [AuthGuard]},
+             { path: 'editdclist', component: EditdclistComponent , canActivate: [AuthGuard]}, 
+             { path: 'addscrapdclist', component: AddscrapComponent , canActivate: [AuthGuard]}, 
+             { path: 'print', outlet: 'print', component: Testpage1Component , children: [{ path: 'finalinvoice', component: DcinvoicepageComponent } ]},
              { path: 'print', outlet: 'print', component: TestpageComponent , children: [{ path: 'invoice', component: DcpageComponent } ]},
             //  { path: 'invoice/:invoiceIds', component: DcpageComponent },
            //  { path: 'testpage', component: TestpageComponent , canActivate: [AuthGuard]},

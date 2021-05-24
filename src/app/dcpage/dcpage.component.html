@@ -60,7 +60,7 @@
     <form  [formGroup]="Test">
       <div class="form-row" *ngIf="isShown">
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="clientname">Client Name</label>
           <select formControlName="clientname" class="form-control" (change)="changedvalue1($event)" required>
             <option value="" disabled selected>Select Client</option>
@@ -68,7 +68,7 @@
             <option *ngFor="let cat of clientlist ">{{cat._id.clientname}}</option>
           </select>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="invoiceid">Select Invoice</label>
           <select formControlName="invoiceid" class="form-control"  (change)="changedvalue2($event)" required>
             <option value="" disabled selected>Select Inoviceid</option>
@@ -76,7 +76,10 @@
             <option *ngFor="let cat of invoiceid">{{cat}}</option>
           </select>
         </div>
-
+        <div class="form-group col-md-4">
+          <label for="invoiceid">DC No:</label>
+          {{dcid}}
+          </div>
       </div>
     </form>
    

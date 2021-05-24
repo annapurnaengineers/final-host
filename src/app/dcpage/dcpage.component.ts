@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AllordersService } from '../services/allorders.service';
 import { Router } from '@angular/router';
 import { ClientlistService } from '../services/clientlist.service';
+import { DcService } from '../services/dc.service';
 
 @Component({
   selector: 'app-dcpage',
@@ -20,10 +21,8 @@ export class DcpageComponent implements OnInit {
   patientdatasource: any;
 
   selectedclient :any;
-
-  constructor(private allordersService:  AllordersService,private clietlistService : ClientlistService) {
-  
-  }
+dcid:any;
+  constructor(private allordersService:  AllordersService,private clietlistService : ClientlistService,private dcservice : DcService) {}
 
   ngOnInit() { 
     this.getclientlist();
@@ -81,8 +80,19 @@ export class DcpageComponent implements OnInit {
        console.log(this.patientdatasource);
       this.patientdatasource = new MatTableDataSource(this.patientdatasource);
      console.log(result);
-
+this.getdcbyinvoiceid(v);
  // console.log(this.updatedvales);
+ 
+   }, error => console.log(error));
+    
+  }
+
+  getdcbyinvoiceid(v)
+  {
+    this.dcservice.getDcidbyincoiceid(this.selectedclient,v.target.value).subscribe((result) => { 
+      this.dcid = result && result[0].dcid;
+       console.log(this.dcid);
+     console.log(result);
  
    }, error => console.log(error));
     

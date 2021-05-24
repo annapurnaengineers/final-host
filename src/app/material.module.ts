@@ -19,6 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 
 
+
 @NgModule({
   imports: [MatMenuModule,MatProgressBarModule,MatProgressSpinnerModule,MatDatepickerModule,MatSortModule,MatInputModule, MatFormFieldModule,MatCardModule,MatDialogModule,CommonModule,MatTableModule,MatSelectModule, MatButtonModule,MatToolbarModule , MatIconModule, MatSidenavModule, MatListModule, MatPaginatorModule],
   exports: [MatMenuModule,MatProgressBarModule,MatProgressSpinnerModule,MatDatepickerModule,MatSortModule,MatInputModule,MatFormFieldModule, MatCardModule,MatDialogModule,CommonModule,MatTableModule,MatSelectModule, MatButtonModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatPaginatorModule],

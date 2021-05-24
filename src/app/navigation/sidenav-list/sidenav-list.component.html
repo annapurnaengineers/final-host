@@ -45,8 +45,18 @@
   <mat-divider></mat-divider>
 
   
-  <a mat-list-item routerLink="/(print:print/invoice)" (click)="onSidenavClose()">
+  <a mat-list-item routerLink="/dclist" (click)="onSidenavClose()">
+    <mat-icon>assessment</mat-icon> <span class="nav-caption">DC List</span>
+  </a>
+  <mat-divider></mat-divider>
+
+  
+  <a mat-list-item href="https://annapurnaengineers.github.io/final-host/(print:print/invoice)" target="_incognito" (click)="onSidenavClose()">
     <mat-icon>assessment</mat-icon> <span class="nav-caption">DC Print</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item href="https://annapurnaengineers.github.io/final-host/(print:print/fianlinvoice)" target="_incognito" (click)="onSidenavClose()">
+    <mat-icon>assessment</mat-icon> <span class="nav-caption">Statement Print</span>
   </a>
   <mat-divider></mat-divider>
 
@@ -59,7 +69,7 @@
  
  
 </mat-nav-list>
-<div  style="margin-top: 250px;color: rgb(182, 182, 182);">
+<div  style="margin-top: 190px;color: rgb(182, 182, 182);">
   <h2>Your IP : {{ipAddress}}</h2>
   </div>
 
