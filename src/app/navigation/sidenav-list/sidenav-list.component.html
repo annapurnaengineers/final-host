@@ -55,16 +55,17 @@
   <mat-menu #vertebrates1="matMenu" class="menuu">
     <button mat-menu-item  routerLink="/allclientadd" ><mat-icon>contact_mail</mat-icon>Add Client</button>
     <button mat-menu-item routerLink="/clientlist"><mat-icon>how_to_reg</mat-icon>Add Client Price</button>
+    <button mat-menu-item routerLink="/dclist"><mat-icon>chrome_reader_mode</mat-icon>Add DC</button>
 
   </mat-menu>
 
   <mat-divider></mat-divider>
 
     
-  <a mat-list-item routerLink="/dclist" (click)="onSidenavClose()">
+  <!-- <a mat-list-item routerLink="/dclist" (click)="onSidenavClose()">
     <mat-icon>chrome_reader_mode</mat-icon> <span class="nav-caption">DC List</span>
   </a>
-  <mat-divider></mat-divider>
+  <mat-divider></mat-divider> -->
 
   
   <a mat-list-item href="https://annapurnaengineers.github.io/final-host/(print:print/invoice)" target="_incognito" (click)="onSidenavClose()">

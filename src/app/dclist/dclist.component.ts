@@ -84,6 +84,7 @@ this.clietlistService.getclientnameonly().subscribe((result) => {
 this.clientlist = result;
 console.log(this.clientlist);
 
+
    })
 }
 
@@ -98,6 +99,8 @@ this.data1 = result;
 this.data();
   
  }, error => console.log(error));
+
+
 }
 
 data()
