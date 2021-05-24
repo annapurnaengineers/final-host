@@ -35,6 +35,9 @@ import {EditdclistComponent} from './editdclist/editdclist.component';
 import {DcinvoicepageComponent} from './dcinvoicepage/dcinvoicepage.component';
 import{AddscrapComponent} from './addscrap/addscrap.component';
 import {Testpage1Component} from './testpage1/testpage1.component';
+import {AllclientaddComponent} from './allclientadd/allclientadd.component';
+import {AddclientaddComponent} from './addclientadd/addclientadd.component';
+import {EditclientaddComponent} from './editclientadd/editclientadd.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule } from '@angular/material/dialog';
@@ -113,7 +116,10 @@ import { Role } from './models/role.model';
    EditdclistComponent,
    DcinvoicepageComponent,
    AddscrapComponent,
-   Testpage1Component
+   Testpage1Component,
+   AddclientaddComponent,
+   AllclientaddComponent,
+   EditclientaddComponent,   
 
 
   ],
@@ -191,6 +197,9 @@ import { Role } from './models/role.model';
              { path: 'adddclist', component: AdddclistComponent ,canActivate: [AuthGuard]},
              { path: 'editdclist', component: EditdclistComponent , canActivate: [AuthGuard]}, 
              { path: 'addscrapdclist', component: AddscrapComponent , canActivate: [AuthGuard]}, 
+             { path: 'allclientadd', component: AllclientaddComponent ,canActivate: [AuthGuard] },
+             { path: 'addclientadd', component: AddclientaddComponent ,canActivate: [AuthGuard]},
+             { path: 'editclientadd', component: EditclientaddComponent , canActivate: [AuthGuard]}, 
              { path: 'print', outlet: 'print', component: Testpage1Component , children: [{ path: 'finalinvoice', component: DcinvoicepageComponent } ]},
              { path: 'print', outlet: 'print', component: TestpageComponent , children: [{ path: 'invoice', component: DcpageComponent } ]},
             //  { path: 'invoice/:invoiceIds', component: DcpageComponent },

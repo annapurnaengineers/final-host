@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Clientlist } from '../models/clientlist.model'
 import { ProductService } from '../services/product.service';
+import { ClientaddService} from '../services/clientadd.service';
 
 
 @Component({
@@ -22,8 +23,11 @@ export class AddclientlistComponent implements OnInit {
   category2: any;
   productname1: any;
   productcode2: any;
+  clientname : any;
+  clientcode2:any;
+  clientlocation2:any;
 
-  constructor(public dialogRef: MatDialogRef<AddclientlistComponent>,private datePipe: DatePipe, private productService : ProductService,private clientlistService: ClientlistService, private router: Router,
+  constructor(public dialogRef: MatDialogRef<AddclientlistComponent>,private datePipe: DatePipe, private clientaddService : ClientaddService, private productService : ProductService,private clientlistService: ClientlistService, private router: Router,
     public fb: FormBuilder, public datepipe: DatePipe) {
     this.form()
   }
@@ -31,6 +35,7 @@ export class AddclientlistComponent implements OnInit {
   ngOnInit() {
 
     this.getcategory();
+    this.getclient();
   }
 
 
@@ -41,7 +46,7 @@ export class AddclientlistComponent implements OnInit {
       category: [''],
       clientname: [''],
       clientprice: [''],
-      clientlocation: ['N/A'],
+      clientlocation: [''],
       createddate:  this.datepipe.transform(new Date(), 'yyyy-MM-dd'),
       lastupdated :[''],
     })
@@ -71,6 +76,33 @@ export class AddclientlistComponent implements OnInit {
   
      })
   }
+
+  getclient()
+  {
+  this.clientaddService.getAll().subscribe((result) => { 
+  this.clientname = result;
+  console.log(this.clientname);
+  
+     })
+  }
+
+  changedvalue3(v){
+    // this.emitValue.emit(this.selectedUser);
+     //console.log(this.selectedUser)
+     console.log(v);
+     this.changedvalue2(v);
+     this.clientaddService.getCodebyclientname(v.target.value).subscribe((result) => { 
+       this.clientcode2 = result && result[0].clientcode;
+       this.clientlocation2 = result && result[0].clientlocation;
+       
+
+       console.log(this.clientcode2);
+       this.addProduct.controls.clientcode.setValue(this.clientcode2);
+       this.addProduct.controls.clientlocation.setValue(this.clientlocation2);
+     }, error => console.log(error));  
+    
+   }  
+
   changedvalue1(v){
     // this.emitValue.emit(this.selectedUser);
      //console.log(this.selectedUser)

@@ -1,1 +1,45 @@
-<p>editclientadd works!</p>
+
+<div id="modal-content-wrapper">
+    <form *ngIf="usedproduct">
+      
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="clientname">Client Name</label>
+                <input type="text" class="form-control"  id="clientname" required
+                    [(ngModel)]="usedproduct.clientname" name="clientname">
+            </div>
+
+        </div>
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="clientcode"> Client Code</label>
+                <input type="text" class="form-control"  id="clientcode" [(ngModel)]="usedproduct.clientcode"
+                    name="clientcode">
+            </div>
+          
+        </div>
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="clientlocation">Client Location</label>
+                <input type="text" class="form-control" id="clientlocation" [(ngModel)]="usedproduct.clientlocation"
+                    name="clientlocation">
+            </div>
+          
+        </div>
+    
+
+
+
+
+
+    </form>
+    <footer id="modal-footer">
+        <button mat-raised-button id="modal-cancel-button" style='margin-right:16px'
+            (click)="closeModal()">Cancel</button>
+        <button mat-raised-button id="modal-action-button" style='margin-right:16px'
+            (click)="actionFunction()">Save</button>
+
+    </footer>
+</div>

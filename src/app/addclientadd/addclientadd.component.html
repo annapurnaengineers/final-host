@@ -1,1 +1,36 @@
-<p>addclientadd works!</p>
+<div id="modal-content-wrapper">
+    <form [formGroup]="addProduct" (ngSubmit)="submit()">
+     
+        <div class="form-row">  
+          <div class="form-group col-md-6">
+            <label for="clientname">Client Name</label>
+            <input type="text"   class="form-control" formControlName="clientname">
+          </div>
+      
+         
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="clientcode">Client Code</label>
+              <input type="text"   class="form-control" formControlName="clientcode">
+            </div>
+        </div>
+        <div class="form-row">  
+            <div class="form-group col-md-6">
+                <label for="clientlocation">Client Location</label>
+                <input type="text"  class="form-control" formControlName="clientlocation">
+            </div>
+         
+          </div>
+       
+
+      
+       
+      </form>
+   
+    <footer id="modal-footer">
+      <button mat-raised-button   id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button>
+      <button mat-raised-button   id="modal-action-button" style='margin-right:16px' (click)="submit()">Save</button>
+      
+  </footer>
+</div>

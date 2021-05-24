@@ -27,19 +27,23 @@
 
         <div class="form-row">  
           <div class="form-group col-md-6">
-            <label for="clientname">Client Name</label>
-            <input type="text"   class="form-control" formControlName="clientname">
+            <label for="clientname">Client</label>
+            <select formControlName="clientname" class="form-control"  required (change)="changedvalue3($event)">
+              <option value="" disabled selected>Select Client</option>
+              <option disabled>Choose Client</option>
+              <option *ngFor="let cat of clientname">{{cat.clientname}}</option>
+          </select>
           </div>
           <div class="form-group col-md-6">
             <label for="clientcode">Client Code</label>
-            <input type="text"   class="form-control" formControlName="clientcode">
+            <input type="text"  class="form-control" disabled  formControlName="clientcode" placeholder="Client Code" required >
           </div>
          
         </div>
         <div class="form-row">  
             <div class="form-group col-md-6">
                 <label for="clientlocation">Client Location</label>
-                <input type="text"  class="form-control" formControlName="clientlocation">
+                <input type="text"  class="form-control" disabled formControlName="clientlocation" placeholder="Client Code" required>
             </div>
             <div class="form-group col-md-6">
               <label for="clientprice">Client Price</label>
