@@ -65,7 +65,7 @@
           <select formControlName="clientname" class="form-control" (change)="changedvalue1($event)" required>
             <option value="" disabled selected>Select Client</option>
             <option >Choose Client</option>
-            <option *ngFor="let cat of clientlist ">{{cat._id.clientname}}</option>
+            <option *ngFor="let cat of clientlist ">{{cat.clientname}}</option>
           </select>
         </div>
         <div class="form-group col-md-4">
@@ -87,8 +87,8 @@
     <button class="button" class="btn btn-primary" style="margin-left: 10px;" (click)="printPage()">Print</button>
 
 </div>
-    <div class="  mat-elevation-z8">
-      <mat-table class="lessons-table mat-elevation-z8" [dataSource]="patientdatasource" matSort  matSortDirection="asc">
+    <div class="  mat-elevation-z8" >
+      <mat-table class="lessons-table mat-elevation-z8"  [dataSource]="patientdatasource" matSort  matSortDirection="asc">
         <ng-container matColumnDef="sno">
           <mat-header-cell *matHeaderCellDef mat-sort-header>S.No</mat-header-cell>
           <mat-cell *matCellDef="let lesson;let i = index">{{ i + 1 }}</mat-cell>

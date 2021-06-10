@@ -6,6 +6,7 @@ import { AllordersService } from '../services/allorders.service';
 import { Router } from '@angular/router';
 import { ClientlistService } from '../services/clientlist.service';
 import { DcService } from '../services/dc.service';
+import { ClientaddService } from '../services/clientadd.service';
 @Component({
   selector: 'app-dcinvoicepage',
   templateUrl: './dcinvoicepage.component.html',
@@ -33,7 +34,7 @@ export class DcinvoicepageComponent implements OnInit {
   balanceamountfromclient:any;
 
 
-  constructor(private allordersService:  AllordersService,private clietlistService : ClientlistService,private dcservice : DcService) {}
+  constructor(private allordersService:  AllordersService,private cc :ClientaddService,private clietlistService : ClientlistService,private dcservice : DcService) {}
 
 
   ngOnInit() { 
@@ -45,11 +46,11 @@ export class DcinvoicepageComponent implements OnInit {
 
   getclientlist()
   {
-  this.clietlistService.getclientnameonly().subscribe((result) => { 
-  this.clientlist = result;
-  console.log(this.clientlist);
-  
-     })
+    console.log(this.clientlist);
+    this.cc.getAll().subscribe((result) => { 
+      this.clientlist = result;
+      console.log(this.clientlist);
+       })
   }
 
   printPage() {

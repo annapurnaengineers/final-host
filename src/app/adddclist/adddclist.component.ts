@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { FormControl } from '@angular/forms';
+import { ClientaddService } from '../services/clientadd.service';
 
 
 @Component({
@@ -41,7 +42,7 @@ export class AdddclistComponent implements OnInit {
   @Output() emitValue: EventEmitter<string> = new EventEmitter<string>();
 
  
-  constructor(public dialogRef: MatDialogRef<AdddclistComponent>,private clietlistService : ClientlistService,private dcService : DcService, private allordersService: AllordersService, private router: Router,
+  constructor(public dialogRef: MatDialogRef<AdddclistComponent>,private cc :ClientaddService,private clietlistService : ClientlistService,private dcService : DcService, private allordersService: AllordersService, private router: Router,
     public fb: FormBuilder, public datepipe: DatePipe) {
     this.form()
   }
@@ -92,11 +93,11 @@ export class AdddclistComponent implements OnInit {
 
   getclientlist()
   {
-  this.clietlistService.getclientnameonly().subscribe((result) => { 
-  this.clientlist = result;
-  console.log(this.clientlist);
-  
-     })
+    console.log(this.clientlist);
+    this.cc.getAll().subscribe((result) => { 
+      this.clientlist = result;
+      console.log(this.clientlist);
+       })
   }
 
 

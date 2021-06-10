@@ -15,6 +15,7 @@ import { EditdclistComponent } from '../editdclist/editdclist.component';
 import { ClientlistService } from '../services/clientlist.service';
 import { jsPDF } from "jspdf";
 import { AllordersService} from '../services/allorders.service';
+import { ClientaddService } from '../services/clientadd.service';
 
 
 
@@ -47,7 +48,7 @@ export class DclistComponent implements OnInit {
   clienttotalbill:any;
   currentbalance:any;
 
-  constructor(public matDialog: MatDialog,private clietlistService : ClientlistService,private allordersService : AllordersService, private DcService: DcService, private router: Router,private datePipe: DatePipe,private spinner: NgxSpinnerService) { }
+  constructor(public matDialog: MatDialog,private cc:ClientaddService,private clietlistService : ClientlistService,private allordersService : AllordersService, private DcService: DcService, private router: Router,private datePipe: DatePipe,private spinner: NgxSpinnerService) { }
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
  
@@ -80,12 +81,11 @@ export class DclistComponent implements OnInit {
 
 getclientlist()
 {
-this.clietlistService.getclientnameonly().subscribe((result) => { 
-this.clientlist = result;
-console.log(this.clientlist);
-
-
-   })
+  console.log(this.clientlist);
+  this.cc.getAll().subscribe((result) => { 
+    this.clientlist = result;
+    console.log(this.clientlist);
+     })
 }
 
 changedvalue1(v)

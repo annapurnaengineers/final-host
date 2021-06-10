@@ -39,6 +39,7 @@ import {AllclientaddComponent} from './allclientadd/allclientadd.component';
 import {AddclientaddComponent} from './addclientadd/addclientadd.component';
 import {EditclientaddComponent} from './editclientadd/editclientadd.component';
 import {MailboxComponent} from './mailbox/mailbox.component';
+import {AddmanualallordersComponent} from './addmanualallorders/addmanualallorders.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule } from '@angular/material/dialog';
@@ -121,7 +122,8 @@ import { Role } from './models/role.model';
    AddclientaddComponent,
    AllclientaddComponent,
    EditclientaddComponent,   
-   MailboxComponent
+   MailboxComponent,
+   AddmanualallordersComponent
 
 
   ],
@@ -202,7 +204,8 @@ import { Role } from './models/role.model';
              { path: 'allclientadd', component: AllclientaddComponent ,canActivate: [AuthGuard] },
              { path: 'addclientadd', component: AddclientaddComponent ,canActivate: [AuthGuard]},
              { path: 'editclientadd', component: EditclientaddComponent , canActivate: [AuthGuard]}, 
-             { path: 'mailbox', component: MailboxComponent , canActivate: [AuthGuard]}, 
+             { path: 'mailbox', component: MailboxComponent}, 
+             { path: 'addmanualallorders', component: AddmanualallordersComponent ,canActivate: [AuthGuard]},
              { path: 'print', outlet: 'print', component: Testpage1Component , children: [{ path: 'finalinvoice', component: DcinvoicepageComponent } ]},
              { path: 'print', outlet: 'print', component: TestpageComponent , children: [{ path: 'invoice', component: DcpageComponent } ]},
             //  { path: 'invoice/:invoiceIds', component: DcpageComponent },

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditallordersComponent } from '../editallorders/editallorders.component';
 import { AddallordersComponent } from '../addallorders/addallorders.component';
+import {AddmanualallordersComponent} from '../addmanualallorders/addmanualallorders.component';
 import { OnlyordersService } from '../services/onlyorders.service';
 import * as XLSX from 'xlsx';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -170,6 +171,17 @@ modelChanged(date) {
 }
 
 
+
+openModal0() {
+  const dialogConfig = new MatDialogConfig();
+  // The user can't close the dialog by clicking outside its body
+  dialogConfig.disableClose = true;
+  dialogConfig.id = "modal-component";
+  dialogConfig.height = "550px";
+  dialogConfig.width = "850px";
+  
+  const modalDialog = this.matDialog.open(AddmanualallordersComponent, dialogConfig);
+}
 
 openModal1() {
   const dialogConfig = new MatDialogConfig();
