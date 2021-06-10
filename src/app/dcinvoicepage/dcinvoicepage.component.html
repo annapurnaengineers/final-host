@@ -119,7 +119,7 @@
     </ng-container>
     <ng-container matColumnDef="clientname">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</mat-header-cell>
-      <mat-cell *matCellDef="let lesson" style="text-indent: 10px;">{{lesson.clientname}}</mat-cell>
+      <mat-cell *matCellDef="let lesson" style="text-indent: 10px;">{{lesson.clientname | titlecase}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="balanceamount">
       <mat-header-cell *matHeaderCellDef mat-sort-header>To Be Paid</mat-header-cell>
@@ -171,11 +171,11 @@
         </ng-container>
         <ng-container matColumnDef="invoiceid">
           <mat-header-cell *matHeaderCellDef mat-sort-header style="align-items: center;" >Invoice No</mat-header-cell>
-          <mat-cell  *matCellDef="let lesson" style="text-align: center;">{{lesson.invoiceid}}</mat-cell>  
+          <mat-cell  *matCellDef="let lesson" style="text-align: center;">{{lesson.invoiceid  | titlecase}}</mat-cell>  
       </ng-container>
         <ng-container matColumnDef="productname">
           <mat-header-cell *matHeaderCellDef mat-sort-header style="align-items: center;" >Item</mat-header-cell>
-          <mat-cell  *matCellDef="let lesson" style="text-align: center;">{{lesson.productname}}</mat-cell>  
+          <mat-cell  *matCellDef="let lesson" style="text-align: center;">{{lesson.productname | titlecase}}</mat-cell>  
       </ng-container>
       <ng-container matColumnDef="clientprice">
         <mat-header-cell *matHeaderCellDef mat-sort-header >Price Per Item</mat-header-cell>

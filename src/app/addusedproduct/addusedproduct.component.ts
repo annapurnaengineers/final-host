@@ -127,7 +127,7 @@ console.log(this.category2);
      console.log(v,v.target.value);
     
      this.productService.getProductcodebyproduct(v.target.value).subscribe((result) => { 
-       this.productcode2 = result;
+       this.productcode2 = result[0];
        this.pushprovalue=result;
        console.log(this.productcode2); 
       this.addProduct.controls.productcode.setValue(this.productcode2.productcode);

@@ -4,20 +4,23 @@
         <input matInput type="text" style="color:purple;" (keyup)="doFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
    </div>
-  <div class="col-md-4">
+  <!-- <div class="col-md-4">
     <mat-form-field >
       <input matInput [matDatepicker]="picker" placeholder="Choose a date"  (ngModelChange)="modelChanged($event.target.value)"  (dateInput)="inputEvent($event)" (dateChange)="changeEvent($event)">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <!-- <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker"  (ngModelChange)="modelChanged($event)"/>
-      <mat-datepicker-toggle matSuffix  [for]="picker" ></mat-datepicker-toggle>
-      <mat-datepicker touchUi #picker color="primary"></mat-datepicker>
-    </mat-form-field> -->
-  </div>
   
+  </div> -->
+ 
+  <div  class="col-md-4" style="margin-left: -130px !important; margin-right: 60px;" >
+    <select  formControlName="clientname" class="form-control" (change)="changedvalue1($event)" required>
+      <option value="" disabled selected>Select Client</option>
+      <option>Choose Client</option>
+      <option *ngFor="let cat of clientname ">{{cat.clientname}}</option>
+    </select>
+  </div>
+
   
     <div >
       <!-- <button mat-button style="color:#ffffff;background-color:#003366; " (click)="refresh()"><mat-icon>cached</mat-icon></button>
@@ -53,7 +56,7 @@
     </ng-container>
       <ng-container matColumnDef="productname">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</mat-header-cell>
-          <mat-cell *matCellDef="let lesson">{{lesson.productname}}</mat-cell>
+          <mat-cell *matCellDef="let lesson" style="text-indent: 20px;">{{lesson.productname}}</mat-cell>
       </ng-container>     
   <ng-container matColumnDef="clientprice">
   <mat-header-cell *matHeaderCellDef mat-sort-header>Client Price</mat-header-cell>

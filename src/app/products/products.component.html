@@ -7,13 +7,22 @@
   </div> -->
   <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1863c5" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
   <div class="form-row parent">
-    <div class="col-md-6" fxFlex="40%">
+    <div class="col-md-4" fxFlex="40%">
       <mat-form-field style="text-align:center;text-decoration: black;">
         <input matInput type="text" style="color:purple;" (keyup)="doFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
    </div>
-  
+   <div class="col-md-4" style="margin-left: -130px !important; margin-right: 60px;">
+    <select formControlName="category" class="form-control" (change)="changedvalue1($event)" required>
+      <option value="" disabled selected>Select Category</option>
+      <option>Choose Category</option>
+      <option *ngFor="let cat of category1 ">{{cat}}</option>
+    </select>
+  </div>
+
     <div >
+      <button mat-button style="color:#ffffff;background-color:#003366; " (click)="refresh()"><mat-icon>cached</mat-icon></button>
+    &nbsp;&nbsp;&nbsp; 
       <button mat-button   style="color:#ffffff;background-color:#003366;" (click)="openModal1()">Add Products</button>
       &nbsp;&nbsp;&nbsp; 
       <button mat-button style="color:#ffffff;background-color:#003366; " (click)="ExportTOExcel()"><mat-icon style="margin-right: 10px;">get_app</mat-icon>Export</button>

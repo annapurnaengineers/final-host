@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { FormControl } from '@angular/forms';
+import { map, startWith } from 'rxjs/operators';
+import { Product } from '../models/product.model';
+
 
 
 
@@ -21,113 +24,120 @@ import { FormControl } from '@angular/forms';
 })
 export class AddallordersComponent implements OnInit {
   category1: any;
-
+  productname = new FormControl();
   addAllorders: FormGroup;
   AllordersService: any;
-  ProductService:any;
+  ProductService: any;
   myDate = new Date();
-  isLoggedIn$: Observable<boolean>;   
+  isLoggedIn$: Observable<boolean>;
   totalCount: number;
   totalCount1: number;
   category: any;
-  selectedUser ;
+  selectedUser;
   productname1: any;
-  expecteddate : any;
+ // productname: any;
+  pn: String[];
+  expecteddate: any;
   minDate = new Date();
   @Output() emitValue: EventEmitter<string> = new EventEmitter<string>();
   category2: any;
-  clientlist :any;
-  clientname :any;
+  clientlist: any;
+  clientname: any;
   productcode2: any;
-  clientocde :any;
-  updatedvales:any;
+  clientocde: any;
+  updatedvales: any;
+  autoFilter: Observable<string[]>;
+  Items: any;
+  //Items: string[] = ['One', 'Two', 'Three'];
 
-  constructor(public dialogRef: MatDialogRef<AddallordersComponent>,private clietlistService : ClientlistService,private productService : ProductService, private allordersService: AllordersService, private router: Router,private authService: AuthenticationService,
+  temp: any[];
+  constructor(public dialogRef: MatDialogRef<AddallordersComponent>, private clietlistService: ClientlistService, private productService: ProductService, private allordersService: AllordersService, private router: Router, private authService: AuthenticationService,
     public fb: FormBuilder, public datepipe: DatePipe) {
     this.form()
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
     this.getclientlist();
     // this.getcategory();
-    
+
   }
 
-  inputEvent(event){
+
+
+
+  inputEvent(event) {
     let expecteddate = this.datepipe.transform(new Date(event.target.value), 'yyyy-MM-dd');
-     console.log(expecteddate);
-     this.addAllorders.controls.expecteddate.setValue(expecteddate);
-  
-   }
+    console.log(expecteddate);
+    this.addAllorders.controls.expecteddate.setValue(expecteddate);
+
+  }
 
 
-  public ss(expecteddate)
-  
-   {
-   this.expecteddate;
-   console.log(expecteddate)
-  
-   }
-  
+  public ss(expecteddate) {
+    this.expecteddate;
+    console.log(expecteddate)
+
+  }
+
 
   form() {
     this.addAllorders = this.fb.group({
       productname: [''],
-      category:  [''],
-      clientname:  [''],
+      category: [''],
+      clientname: [''],
       finalbill: [''],
       clientprice: [''],
       invoiceid: [''],
-      location : [''],
+      location: [''],
       extracol: ['Pending'],
-      advancereceived :[''],
- 	    tobepaid :[''],
+      advancereceived: [''],
+      tobepaid: [''],
       isactive: 'false',
       quantity: [''],
-      createddate:  this.datepipe.transform(new Date(), 'yyyy-MM-dd'),
-      expecteddate:  this.datepipe.transform(new Date(), 'yyyy-MM-dd'),
+      createddate: this.datepipe.transform(new Date(), 'yyyy-MM-dd'),
+      expecteddate: this.datepipe.transform(new Date(), 'yyyy-MM-dd'),
       lastupdated: ['']
 
     })
   }
 
-  qut(){
+  qut() {
     let ws3 = this.addAllorders.get('clientprice').value || 0;
-    let ws4 =  this.addAllorders.get('quantity').value || 0;
-    this.totalCount1 = parseInt(ws3)*parseInt(ws4);
+    let ws4 = this.addAllorders.get('quantity').value || 0;
+    this.totalCount1 = parseInt(ws3) * parseInt(ws4);
     this.addAllorders.controls["finalbill"].setValue(this.totalCount1);
 
   }
 
-  addvalue(){
+  addvalue() {
     //this.totalCount = 20;
     let product = this.addAllorders;
     let ws1 = this.addAllorders.get('finalbill').value || 0;
-   // console.log(this.addProduct.get('workshop2').value);
-    let ws2 =  this.addAllorders.get('advancereceived').value || 0;
-   
-    this.totalCount = parseInt(ws1)-parseInt(ws2);
+    // console.log(this.addProduct.get('workshop2').value);
+    let ws2 = this.addAllorders.get('advancereceived').value || 0;
+
+    this.totalCount = parseInt(ws1) - parseInt(ws2);
     this.addAllorders.controls["tobepaid"].setValue(this.totalCount);
     console.log(this.addAllorders);
-  
+
   }
-  
+
 
 
   submit() {
     // if (!this.addAllorders.valid) {
     //   return false;
     // } else {
-      console.log(this.addAllorders.value)
-      this.allordersService.addallorders(this.addAllorders.value)   
-        .subscribe((res) => {
-          console.log(res)
-          this.addAllorders.reset();
-       this.actionFunction();
-         //this.getaddproducts();
-         window.location.reload();
-        })
+    console.log(this.addAllorders.value)
+    this.allordersService.addallorders(this.addAllorders.value)
+      .subscribe((res) => {
+        console.log(res)
+        this.addAllorders.reset();
+        this.actionFunction();
+        //this.getaddproducts();
+        window.location.reload();
+      })
     // }
   }
 
@@ -140,68 +150,105 @@ export class AddallordersComponent implements OnInit {
   //   //return this.category.find(x => x._id === this.category);
   //   console.log(this.category1);
   //     console.log(this.category2);
-   
+
   //   }, error => console.log(error));
 
   // } 
 
-  getclientlist()
-  {
-  this.clietlistService.getclientnameonly().subscribe((result) => { 
-  this.clientlist = result;
-  console.log(this.clientlist);
-  
-     })
+  getclientlist() {
+    this.clietlistService.getclientnameonly().subscribe((result) => {
+      this.clientlist = result;
+      console.log(this.clientlist);
+     
+    })
   }
 
 
-// getcategory()
-// {
-// this.productService.getcategoryonly().subscribe((result) => { 
-// this.category2 = result;
-// console.log(this.category2);
+  // getcategory()
+  // {
+  // this.productService.getcategoryonly().subscribe((result) => { 
+  // this.category2 = result;
+  // console.log(this.category2);
 
-//    })
-// }
+  //    })
+  // }
 
-changedvalue3(v){
-  // this.emitValue.emit(this.selectedUser);
-   //console.log(this.selectedUser)
-   console.log(v);
-   this.clietlistService.getCategorybyclientname(v.target.value).subscribe((result) => { 
-     this.productname1 = result;
-    // this.category2 =  this.productname1.productname;
-    this.updatedvales =  result && result[0].clientname;
-     // this.addAllorders.controls.category.setValue(cp);
-     console.log(result);
-
-  console.log(this.updatedvales);
- 
-   }, error => console.log(error));}
-
-
-   changedvalue2(v){
+  changedvalue3(v) {
     // this.emitValue.emit(this.selectedUser);
-     //console.log(this.selectedUser)
-     console.log(v);
-    let cp1  = v.target.value;
-    let v1 = this.updatedvales;
-     this.clietlistService.getProductbycategory1(v1,cp1).subscribe((result) => { 
-       this.category = result && result[0].category;
-       this.productcode2 = result && result[0].clientprice;
-      // this.productcode2 = result;
-   //   let cp = result && result[0].clientprice
-    //  this.addAllorders.controls.clientprice.setValue(cp);
-     //  console.log(this.productname1); 
-     this.addAllorders.controls.category.setValue(this.category);
-     this.addAllorders.controls.clientprice.setValue(this.productcode2);
-     console.log(result,"fianl")
+    //console.log(this.selectedUser)
+    console.log(v);
+    this.clietlistService.getCategorybyclientname(v.target.value).subscribe((result) => {
+      this.productname1 = result;
+
+      let temp = []
+      for (var index = 0; index < result.length; index++) {
+        temp[index] = result[index].productname;
+
+      }
+      console.log(temp, "yyy")
+      let pp = JSON.stringify(temp);
+      this. Items = temp;
+      let Items1 = this.Items.toString();
+
+      console.log(this.Items, "tttttt")
+      this.test();
+      // this.category2 =  this.productname1.productname;
+      this.updatedvales = result && result[0].clientname;
+      // this.addAllorders.controls.category.setValue(cp);
+      console.log(result);
+
+      console.log(this.updatedvales);
      
-     }, error => console.log(error));
-   
-   }
+
+    }, error => console.log(error));
+  }
+
 
  
+
+  test() {
+    this.autoFilter = this.productname.valueChanges.pipe(
+      startWith(''),
+      map(value => this.mafilter(value))
+    
+    );
+    
+  }
+
+   mafilter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.Items.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+   // return this.Items1.filter(item => item.toLowerCase().includes(filterValue));
+  }
+
+
+
+
+  changedvalue2(item) {
+    // this.emitValue.emit(this.selectedUser);
+    //console.log(this.selectedUser)
+    this.addAllorders.controls["productname"].setValue(item);
+    console.log(item,"sss");
+   let cp1 = item;
+    let v1 = this.updatedvales;
+    this.clietlistService.getProductbycategory1(v1, cp1).subscribe((result) => {
+      this.category = result && result[0].category;
+      this.productcode2 = result && result[0].clientprice;
+      // this.productcode2 = result;
+      //   let cp = result && result[0].clientprice
+      //  this.addAllorders.controls.clientprice.setValue(cp);
+      //  console.log(this.productname1); 
+      this.addAllorders.controls.category.setValue(this.category);
+      this.addAllorders.controls.clientprice.setValue(this.productcode2);
+      console.log(result, "fianl")
+
+    }, error => console.log(error));
+
+  }
+
+
+
+
   // changedvalue1(v){
   //  // this.emitValue.emit(this.selectedUser);
   //   //console.log(this.selectedUser)
@@ -209,7 +256,7 @@ changedvalue3(v){
   //  let cn = v.target.value;
   //  debugger;
   //   this.clietlistService.getProductbycategory1("MCM",cn).subscribe((result) => { 
-    
+
   //     this.productname1 =  result;
   //   // let cp = result && result[0].clientprice
   //     //this.addAllorders.controls.clientprice.setValue(cp);

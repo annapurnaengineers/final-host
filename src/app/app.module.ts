@@ -67,6 +67,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatMenuModule } from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {SubjectService} from './services/subjectservice.service';
 
 
@@ -155,6 +156,7 @@ import { Role } from './models/role.model';
     NgxSpinnerModule,
     MatMenuModule,
     MatTooltipModule,
+    MatAutocompleteModule,
     RouterModule.forRoot([
       // { path: 'login', component: LoginComponent },
       // { path: 'products', component:ProductsComponent },

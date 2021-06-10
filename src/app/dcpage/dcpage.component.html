@@ -4,7 +4,7 @@
 <head>
   <title>Invoice For Annapurna Engineers</title>
   <meta charset='utf-8'>
-  <meta name="description" content="AngularJS and Angular Code Example for creating Invoices and Invoicing Application">
+  <meta name="description" content="Annapurna Engineers PVT LTD">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
@@ -60,23 +60,36 @@
     <form  [formGroup]="Test">
       <div class="form-row" *ngIf="isShown">
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="clientname">Client Name</label>
-          <select formControlName="clientname" class="form-control" (change)="changedvalue1($event)" required>
+          <select class="form-control" (change)="changedvalue1($event)" required>
             <option value="" disabled selected>Select Client</option>
             <option >Choose Client</option>
             <option *ngFor="let cat of clientlist ">{{cat.clientname}}</option>
           </select>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="invoiceid">Select Invoice</label>
-          <select formControlName="invoiceid" class="form-control"  (change)="changedvalue2($event)" required>
+          <select class="form-control"  (change)="changedvalue2($event)" required>
             <option value="" disabled selected>Select Inoviceid</option>
             <option >Choose Invoice Id</option>
             <option *ngFor="let cat of invoiceid">{{cat}}</option>
           </select>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
+          <label for="productname">Select Products</label>
+          <!-- <select formControlName="productname" class="form-control"   required>
+            <option value="" disabled selected>Select Products</option>
+            <option >Check Products</option>
+            <option *ngFor="let cat of productname">{{cat.productname}}</option>
+          </select> -->
+
+
+          <mat-select placeholder="Select Products" [formControl]="toppings" multiple [(ngModel)]="patientdatasource" (selectionChange)="changedvalue3($event.value)">
+                        <mat-option *ngFor="let cat of productname; let i = index" [value]="cat.productname">{{cat.productname}}</mat-option>
+          </mat-select>
+        </div>
+        <div class="form-group col-md-3">
           <label for="invoiceid">DC No:</label>
           {{dcid}}
           </div>
@@ -88,7 +101,8 @@
 
 </div>
     <div class="  mat-elevation-z8" >
-      <mat-table class="lessons-table mat-elevation-z8"  [dataSource]="patientdatasource" matSort  matSortDirection="asc">
+      <span>{{patientdatasource1}}</span>
+      <mat-table class="lessons-table mat-elevation-z8"  [dataSource]="patientdatasource1" matSort  matSortDirection="asc">
         <ng-container matColumnDef="sno">
           <mat-header-cell *matHeaderCellDef mat-sort-header>S.No</mat-header-cell>
           <mat-cell *matCellDef="let lesson;let i = index">{{ i + 1 }}</mat-cell>
@@ -110,6 +124,7 @@
  
 
 </div>
+
 
 </body>
 

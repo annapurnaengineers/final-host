@@ -11,6 +11,8 @@ import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from "ngx-spinner";
 import * as XLSX from 'xlsx';
 import { EditclientlistComponent } from '../editclientlist/editclientlist.component';
+import { ClientaddService } from '../services/clientadd.service';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-clientlist',
   templateUrl: './clientlist.component.html',
@@ -25,8 +27,11 @@ export class ClientlistComponent implements OnInit {
  private _id :string;
   route: any;
   productname : string;
+  selectedclient :any;
+  clientname:any;
+  Test: FormGroup;
 
-  constructor(public matDialog: MatDialog, private ClientlistService: ClientlistService, private router: Router,private datePipe: DatePipe,    private spinner: NgxSpinnerService) { }
+  constructor(public matDialog: MatDialog, private ClientaddService : ClientaddService ,private ClientlistService: ClientlistService, private router: Router,private datePipe: DatePipe,    private spinner: NgxSpinnerService) { }
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
  
@@ -37,7 +42,7 @@ export class ClientlistComponent implements OnInit {
   
     setTimeout(() => {
       /** spinner ends after 5 seconds */
-      this.data();
+     // this.data();
       this.spinner.hide();
     }, 3000);
   };
@@ -45,24 +50,55 @@ export class ClientlistComponent implements OnInit {
 
   ngOnInit() 
   {
-    this.loading();  
-   
+   this.loading();  
+   this.getclientlist();
   }
 
 
-
-  data()
+  
+  getclientlist()
 {
-  this.ClientlistService.getAll().subscribe((result) => { 
-    this.patientdatasource = result;
-    console.log(this.patientdatasource);
-    this.patientdatasource = new MatTableDataSource(this.patientdatasource);
-    this.patientdatasource.paginator = this.paginator;
-    this.patientdatasource.sort = this.sort;
+this.ClientaddService.getAll().subscribe((result) => { 
+this.clientname = result;
+console.log(this.clientname);
+
+   })
+}
+
+
+  changedvalue1(v)
+  {
+  
+   console.log(v);
+   this.selectedclient = v.target.value;
+   this.ClientlistService.getCategorybyclientname(v.target.value).subscribe((result) => { 
+  //this.data1 = result;
+  this.patientdatasource = result;
+  console.log(this.patientdatasource);
+  this.patientdatasource = new MatTableDataSource(this.patientdatasource);
+  this.patientdatasource.paginator = this.paginator;
+  this.patientdatasource.sort = this.sort;
+    // console.log(this.data1);
+  //this.data(v);
+    
+   }, error => console.log(error));
+  
+  }
+  
+
+
+//   data()
+// {
+//   this.ClientlistService.getAll().subscribe((result) => { 
+//     this.patientdatasource = result;
+//     console.log(this.patientdatasource);
+//     this.patientdatasource = new MatTableDataSource(this.patientdatasource);
+//     this.patientdatasource.paginator = this.paginator;
+//     this.patientdatasource.sort = this.sort;
    
 
-  })
-}
+//   })
+// }
 
 public doFilter = (value: string) => {
   this.patientdatasource.filter = value.trim().toLocaleLowerCase();

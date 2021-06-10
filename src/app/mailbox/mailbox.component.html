@@ -1,6 +1,17 @@
-<html>
-<head></head>
-<body>
-<iframe src="https://sun.serversm.com:2083/" width="1100px" height="550px" style="margin-left: 250px;" title="Title goes Here"></iframe>
-</body>
-</html>
+
+<div id="modal-content-wrapper" class="test">
+    <form [formGroup]="testmail" name="add" (ngSubmit)="submit()">
+        <div class="form-group " style="margin-top: 30px;">
+        <label for="password" >Enter Password</label>
+        <input type="text"  class="form-control"  id="password" formControlName="password" required >
+    </div>
+       
+      </form>
+   
+    <footer id="modal-footer">
+      <!-- <button mat-raised-button   id="modal-cancel-button" style='margin-right:16px' (click)="closeModal()">Cancel</button> -->
+      <button mat-raised-button   id="modal-action-button"  (click)="submit()">Verify</button>
+      
+  </footer>
+</div>
+

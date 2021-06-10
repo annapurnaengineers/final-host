@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, FormControl } from "@angular/forms";
 import { MatTableDataSource } from '@angular/material/table';
 import { AllordersService } from '../services/allorders.service';
 import { Router } from '@angular/router';
 import { ClientlistService } from '../services/clientlist.service';
 import { DcService } from '../services/dc.service';
 import { ClientaddService } from '../services/clientadd.service';
+import { filter } from 'rxjs/operators';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { MailboxComponent } from '../mailbox/mailbox.component';
 
 @Component({
   selector: 'app-dcpage',
@@ -18,17 +22,25 @@ export class DcpageComponent implements OnInit {
   isShown: boolean;
   clientlist :any;
   invoiceid :any;
-  Test: FormGroup;
+  //Test: FormGroup;
   patientdatasource: any;
-
+  patientdatasource1: any;
+  productname:any;
   selectedclient :any;
 dcid:any;
-  constructor(private allordersService:  AllordersService,private cc :ClientaddService,private clietlistService : ClientlistService,private dcservice : DcService) {}
+names:any;
+filter:String;
+//h:any;
+toppings = new FormControl();
+Test = new FormControl();
+matArray = [];
+
+  constructor(public matDialog: MatDialog,private allordersService:  AllordersService,private cc :ClientaddService,private clietlistService : ClientlistService,private dcservice : DcService) {}
 
   ngOnInit() { 
     this.getclientlist();
     this.isShown = true; 
-    
+    this.openModal0();
    // this.data();
   }
 
@@ -75,11 +87,10 @@ dcid:any;
   {
 //let cp =this.clientlist;
    console.log(v);
-
+this.names = v.target.value;
    this.allordersService.getDcprint(this.selectedclient,v.target.value).subscribe((result) => { 
-    this.patientdatasource = result;
-       console.log(this.patientdatasource);
-      this.patientdatasource = new MatTableDataSource(this.patientdatasource);
+    this.productname = [...result];
+    //   console.log(this.patientdatasource);
      console.log(result);
 this.getdcbyinvoiceid(v);
  // console.log(this.updatedvales);
@@ -88,6 +99,47 @@ this.getdcbyinvoiceid(v);
     
   }
 
+  changedvalue3(v)
+  {
+//let cp =this.clientlist;
+   
+  //  this.allordersService.getDcprint(this.selectedclient,this.names).subscribe((result) => { 
+    // const found = array1.find(element => element > 10);
+    //  console.log(result);
+     console.log(v);
+     let selectedelement,matarray=[];
+
+      for (var i = 0; i < v.length; i++) {
+        selectedelement  = this.productname.find(el=>el.productname == v[i]);
+        matarray.push(selectedelement);
+      }
+        this.patientdatasource1 = new MatTableDataSource(matarray);
+   
+
+
+ 
+
+    // let dataFiltered = result.filter(function(result){
+    //   return result.productname[0].indexOf(filter) > 1
+    // })
+    // console.log(dataFiltered);
+   //  this.patientdatasource = result;
+
+  //  let temp1 = [];
+
+  //  for (var i = 0; i < h; i++) {
+  //      temp1[i] = h;
+  //  }
+   
+ //this.productname = Object.keys(temp1) ;
+// this.patientdatasource1 = Object.keys(this.matArray) ;
+ //this.productname= temp1 && temp1[0].keys;
+ 
+  // console.log(this.patientdatasource1);
+    
+  // }, error => console.log(error));
+    
+  }
   getdcbyinvoiceid(v)
   {
     this.dcservice.getDcidbyincoiceid(this.selectedclient,v.target.value).subscribe((result) => { 
@@ -105,6 +157,15 @@ this.getdcbyinvoiceid(v);
   }
 
 
-
+  openModal0() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "350px";
+    
+    const modalDialog = this.matDialog.open(MailboxComponent, dialogConfig);
+  }
 
 }

@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { ClientlistService } from '../services/clientlist.service';
 import { DcService } from '../services/dc.service';
 import { ClientaddService } from '../services/clientadd.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MailboxComponent } from '../mailbox/mailbox.component';
 @Component({
   selector: 'app-dcinvoicepage',
   templateUrl: './dcinvoicepage.component.html',
@@ -34,14 +36,14 @@ export class DcinvoicepageComponent implements OnInit {
   balanceamountfromclient:any;
 
 
-  constructor(private allordersService:  AllordersService,private cc :ClientaddService,private clietlistService : ClientlistService,private dcservice : DcService) {}
+  constructor(public matDialog: MatDialog,private allordersService:  AllordersService,private cc :ClientaddService,private clietlistService : ClientlistService,private dcservice : DcService) {}
 
 
   ngOnInit() { 
     this.getclientlist();
     this.isShown = true; 
     
-   // this.data();
+    this.openModal0() 
   }
 
   getclientlist()
@@ -155,7 +157,16 @@ getTotalCost()
     this.isShown = ! this.isShown;
   }
 
-
+  openModal0() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "350px";
+    
+    const modalDialog = this.matDialog.open(MailboxComponent, dialogConfig);
+  }
 
 
 }

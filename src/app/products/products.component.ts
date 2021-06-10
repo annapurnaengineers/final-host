@@ -33,6 +33,10 @@ export class ProductsComponent implements OnInit {
   productname : string;
   dataRow:any;
   productleast: Object;
+  selectedclient:any;
+  data1:any;
+  category:any;
+  category1:any;
 
   constructor(public matDialog: MatDialog, private productService: ProductService,private datePipe: DatePipe, private usedproductService: UsedproductService, private router: Router,  private spinner: NgxSpinnerService) { }
   @ViewChild('scheduledOrdersPaginator') paginator: MatPaginator;
@@ -43,17 +47,59 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.loading();
+  this.getcategory();
   this.getproductleast();
   }
+
+
   loading() {
     this.spinner.show();
   
     setTimeout(() => {
-      /** spinner ends after 5 seconds */
+      /** spinner ends after 2 seconds */
+     // this.data();
+      this.spinner.hide();
+    }, 2000);
+  };
+
+  refresh(){
+    this.spinner.show();
+    setTimeout(() => {
       this.data();
       this.spinner.hide();
-    }, 5000);
-  };
+    }, 3000);
+    
+  }
+  getcategory()
+{
+this.productService.getcategoryonly().subscribe((result) => { 
+this.category1 = result;
+console.log(this.category1);
+
+   })
+}
+
+  changedvalue1(v)
+{
+
+ console.log(v);
+ this.selectedclient = v.target.value;
+ this.productService.getProductbycategory(v.target.value).subscribe((result) => { 
+this.data1 = result;
+this.patientdatasource = result;
+console.log(this.patientdatasource);
+this.patientdatasource = new MatTableDataSource(this.patientdatasource);
+this.patientdatasource.paginator = this.paginator;
+this.patientdatasource.sort = this.sort;
+   console.log(this.data1);
+//this.data(v);
+  
+ }, error => console.log(error));
+
+}
+
+
+
 
 getproductleast()
 {

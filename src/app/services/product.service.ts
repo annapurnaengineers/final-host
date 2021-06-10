@@ -57,7 +57,7 @@ export class ProductService {
       return this.http.get<Product[]>(`${environment.apiUrl}products/getproductcodebyproduct/` + productname )
       
         .pipe(
-          tap(_ => console.log(`Product id retrieved: ${productname}`)),
+          tap(_ => console.log(`Product code retrieved: ${productname}`)),
           catchError(this.handleError<Product[]>(`Get Song id=${productname}`))
           
         );
