@@ -40,6 +40,7 @@ import {AddclientaddComponent} from './addclientadd/addclientadd.component';
 import {EditclientaddComponent} from './editclientadd/editclientadd.component';
 import {MailboxComponent} from './mailbox/mailbox.component';
 import {AddmanualallordersComponent} from './addmanualallorders/addmanualallorders.component';
+import { QuoteinvoicepageComponent} from './quoteinvoicepage/quoteinvoicepage.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatToolbarModule,MatSidenavModule,MatButtonModule,MatIconModule,MatDividerModule } from '@angular/material/dialog';
@@ -69,6 +70,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {SubjectService} from './services/subjectservice.service';
+
 
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -124,7 +126,8 @@ import { Role } from './models/role.model';
    AllclientaddComponent,
    EditclientaddComponent,   
    MailboxComponent,
-   AddmanualallordersComponent
+   AddmanualallordersComponent,
+   QuoteinvoicepageComponent
 
 
   ],
@@ -210,6 +213,8 @@ import { Role } from './models/role.model';
              { path: 'addmanualallorders', component: AddmanualallordersComponent ,canActivate: [AuthGuard]},
              { path: 'print', outlet: 'print', component: Testpage1Component , children: [{ path: 'finalinvoice', component: DcinvoicepageComponent } ]},
              { path: 'print', outlet: 'print', component: TestpageComponent , children: [{ path: 'invoice', component: DcpageComponent } ]},
+             { path: 'print', outlet: 'print', component: Testpage1Component , children: [{ path: 'quoteinvoice', component: QuoteinvoicepageComponent } ]},
+             
             //  { path: 'invoice/:invoiceIds', component: DcpageComponent },
            //  { path: 'testpage', component: TestpageComponent , canActivate: [AuthGuard]},
              { path: 'notfound', component: NotfoundComponent },

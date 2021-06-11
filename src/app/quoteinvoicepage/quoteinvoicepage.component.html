@@ -16,17 +16,16 @@
   <div class="container" width="800px" id="invoice">
     <div class="row">
       <div class="col-xs-12 heading">
-        DC INVOICE
+        QUOTATION INVOICE
       </div>
     </div>
     <div class="row branding">
       <div class="col-xs-6">
         <div class="invoice-number-container">
-          <label for="invoice-number">DC No #</label><input type="text" id="invoice-number"
+          <label for="invoice-number">Quotation No #</label><input type="text" id="invoice-number"
             ng-model="invoice.invoice_number" />
           <br>
-          <label for="invoice-date"> Invoice Date :</label><input type="text" id="invoice-date"
-            ng-model="invoice.date" />
+          <label for="invoice-date"> Invoice Date :</label> {{today | date}}
         </div>
       </div>
       <div class="col-xs-6 logo-container">
@@ -39,11 +38,12 @@
     </div>
     <div class="row infos">
       <div class="col-xs-6">
-        <div class="input-container"><input type="text" placeholder="Client Name" /></div>
-        <div class="input-container"><input type="text" placeholder="Address" /></div>
+        <label style="font-weight: lighter;"> Client Name :</label>{{selectedclient | titlecase}}
+        <br>
+        <label style="font-weight: lighter;"> Location :</label>{{selectedlocation | titlecase}}
         <!-- <div class="input-container"><input type="text" placeholder="Address2" /></div> -->
-        <div class="input-container"><input type="text" placeholder="State" /></div>
-        <div class="input-container"><input type="text" placeholder="Phone Number" /></div>
+        <!-- <div class="input-container"><input type="text" placeholder="State" /></div> -->
+        <div class="input-container"> <label style="font-weight: lighter;"> Phone Number :</label><input type="text"  placeholder="Enter Phone Number" /></div>
         <div class="input-container" data-ng-hide='printMode'>
           <!-- <select ng-model='currencySymbol' ng-options='currency.symbol as currency.name for currency in availableCurrencies'></select> -->
         </div>
@@ -60,7 +60,7 @@
     <form  [formGroup]="Test">
       <div class="form-row" *ngIf="isShown">
 
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-6">
           <label for="clientname">Client Name</label>
           <select class="form-control" (change)="changedvalue1($event)" required>
             <option value="" disabled selected>Select Client</option>
@@ -68,16 +68,10 @@
             <option *ngFor="let cat of clientlist ">{{cat.clientname}}</option>
           </select>
         </div>
-        <div class="form-group col-md-3">
-          <label for="invoiceid">Select Invoice</label>
-          <select class="form-control"  (change)="changedvalue2($event)" required>
-            <option value="" disabled selected>Select Inoviceid</option>
-            <option >Choose Invoice Id</option>
-            <option *ngFor="let cat of invoiceid">{{cat}}</option>
-          </select>
-        </div>
-        <div class="form-group col-md-3">
-          <label for="productname">Select Products</label>
+      
+        <div class="form-group col-md-6">
+          <label style="margin-left: 20px;" >Select Products</label>
+          <br>
           <!-- <select formControlName="productname" class="form-control"   required>
             <option value="" disabled selected>Select Products</option>
             <option >Check Products</option>
@@ -85,14 +79,29 @@
           </select> -->
 
 
-          <mat-select placeholder="Select Products" [formControl]="toppings" multiple [(ngModel)]="patientdatasource" (selectionChange)="changedvalue3($event.value)">
-                        <mat-option *ngFor="let cat of productname; let i = index" [value]="cat.productname">{{cat.productname}}</mat-option>
-          </mat-select>
-        </div>
-        <div class="form-group col-md-3">
-          <label for="invoiceid">DC No:</label>
-          {{dcid}}
-          </div>
+    
+          <!-- (selectionChange)="changedvalue3($event.value)" -->
+        <mat-form-field style="margin-left: 10px;">
+            <!-- <mat-label >Select Products</mat-label> -->
+            <mat-select [formControl]="toppings" multiple (closed)="onPanelClose()"   (selectionChange)="changedvalue3($event.value)" >
+        
+                  <mat-form-field class="example-full-width">
+                      <input matInput
+                     [formControl]="productname2"
+                     type="text"
+                     name="filter-options"
+                     id="filter-options"
+                     placeholder="Search"  >
+              </mat-form-field>
+              <mat-option *ngFor="let item of filteredOptions | async" [value]="item.name" 
+                [ngClass]="{'hide': !item.show}">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+
+      
       </div>
     </form>
    
@@ -101,7 +110,6 @@
 
 </div>
     <div class="  mat-elevation-z8" >
-   
       <mat-table class="lessons-table mat-elevation-z8"  [dataSource]="patientdatasource1" matSort  matSortDirection="asc">
         <ng-container matColumnDef="sno">
           <mat-header-cell *matHeaderCellDef mat-sort-header>S.No</mat-header-cell>
@@ -109,12 +117,29 @@
         </ng-container>
         <ng-container matColumnDef="productname">
           <mat-header-cell *matHeaderCellDef mat-sort-header >Item</mat-header-cell>
-          <mat-cell  *matCellDef="let lesson">{{lesson.productname}}</mat-cell>  
+          <mat-cell  *matCellDef="let lesson">{{lesson.productname | titlecase}}</mat-cell>  
+      </ng-container>
+      <ng-container matColumnDef="clientprice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>₹ Price Per Unit</mat-header-cell>
+        <mat-cell  *matCellDef="let lesson" >{{lesson.clientprice}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="quantity">
-        <mat-header-cell *matHeaderCellDef mat-sort-header  > Quantity</mat-header-cell>
-        <mat-cell  *matCellDef="let lesson" >{{lesson.quantity}}</mat-cell>
-      </ng-container>
+        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let element;let i = index">
+            <mat-form-field floatLabel="never">
+                <input matInput placeholder="Quantity" (input)=" addvalue($event,i)" [value]="element.quantity" [(ngModel)]="element.quantity">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef>₹ Total </mat-header-cell>
+        <mat-cell *matCellDef="let element;let i = index">
+            <mat-form-field floatLabel="never">
+                <input matInput placeholder="Total" [value]="total[i]"  [(ngModel)]="element.total">
+            </mat-form-field>
+        </mat-cell>
+    </ng-container>
+
         <mat-header-row *matHeaderRowDef="displayedColumns" style="justify-self: start;;"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns" ></mat-row>
       </mat-table>
