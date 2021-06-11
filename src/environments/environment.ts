@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
- apiUrl: 'http://localhost:3000/api/',
-//apiUrl: 'https://api.annapurnaengineers.fun/api/',
+ //apiUrl: 'http://localhost:3000/api/',
+apiUrl: 'https://api.annapurnaengineers.fun/api/',
 // apiUrl:'http://aaa-env.eba-2m32cssz.ap-south-1.elasticbeanstalk.com/api/',
  //http://aaa-env.eba-2m32cssz.ap-south-1.elasticbeanstalk.com/
  //apiUrl:'http://aep.ap-1.evennode.com/api/',
